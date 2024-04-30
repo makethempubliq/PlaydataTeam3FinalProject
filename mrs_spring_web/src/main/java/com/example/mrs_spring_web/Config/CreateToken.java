@@ -10,7 +10,6 @@ import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 
 
-
 public class CreateToken {
 
     private static final String CLIENT_ID = "25d521b807f44fc19a8b202da4c88248";

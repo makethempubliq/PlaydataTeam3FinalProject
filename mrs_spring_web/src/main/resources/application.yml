@@ -68,6 +68,8 @@ spring:
                 - user-follow-read
                 - user-modify-playback-state
                 - user-read-playback-state
+                - app-remote-control
+                - streaming
                 provider : spotify-provider
             provider:
               spotify-provider:

@@ -34,4 +34,6 @@ public class UserEntity {
   private String providerId;
   @Column(length = 1000)
   private String accessToken;
+  @Column(length = 1000)
+  private String deviceId;
 }

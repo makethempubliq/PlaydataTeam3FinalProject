@@ -11,18 +11,21 @@ import org.springframework.stereotype.Service;
 
 import com.example.mrs_spring_web.Model.Entity.UserEntity;
 import com.example.mrs_spring_web.Repository.UserRepository;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.neovisionaries.i18n.CountryCode;
 
 import lombok.extern.slf4j.Slf4j;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.SpotifyHttpManager;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import se.michaelthelin.spotify.model_objects.miscellaneous.Device;
+import se.michaelthelin.spotify.model_objects.specification.Playlist;
+import se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import se.michaelthelin.spotify.model_objects.specification.Recommendations;
 import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.model_objects.specification.User;
 import se.michaelthelin.spotify.requests.data.browse.GetRecommendationsRequest;
-import se.michaelthelin.spotify.requests.data.player.GetUsersAvailableDevicesRequest;
-import se.michaelthelin.spotify.requests.data.player.StartResumeUsersPlaybackRequest;
+import se.michaelthelin.spotify.requests.data.player.AddItemToUsersPlaybackQueueRequest;
 
 @Slf4j
 @Service
@@ -40,45 +43,58 @@ public class SpotifyService {
                                                 .setRedirectUri(redirectUri)
                                                 .build();
 
-    public String getRecommendation(String userName) throws IOException, ParseException, SpotifyWebApiException {
+    public List<String> getTracklistByPlaylist(String userName, String playlistId) throws IOException, ParseException, SpotifyWebApiException {
         UserEntity user = userRepository.findByUsername(userName);
         spotifyApi.setAccessToken(user.getAccessToken());
-        log.info("getrecommdations");
-        GetRecommendationsRequest getRecommendationsRequest = spotifyApi.getRecommendations()
-                    .market(CountryCode.KR)
-                    .max_popularity(50)
-                    .min_popularity(10)
-                    .seed_genres("0JQ5IMCbQBLlZMXMYUXUiW")
-                    .build();
-        log.info("excute");
-        Recommendations recommendations = getRecommendationsRequest.execute();
-        Track[] tracks = recommendations.getTracks();
-        List<String> tracklist = new ArrayList<>();
-        for (Track track : tracks) {
-            String trackdata = track.getName()+" "+track.getArtists()[0].getName();
-            tracklist.add(trackdata);
+        PlaylistTrack[] playlistTracks = spotifyApi.getPlaylist(playlistId).build().execute().getTracks().getItems();
+        List<String> trackLists = new ArrayList<>();
+        for (PlaylistTrack playlistTrack : playlistTracks) {
+            trackLists.add(playlistTrack.getTrack().getUri());
         }
-        return tracklist.toString();
+        return trackLists;
     }
 
-    public String demoplay(String userName) throws IOException, ParseException, SpotifyWebApiException {
+    public void addTracksToQueue(String userName, List<String> tracks) throws IOException, ParseException, SpotifyWebApiException {
         UserEntity user = userRepository.findByUsername(userName);
         spotifyApi.setAccessToken(user.getAccessToken());
-        GetUsersAvailableDevicesRequest availableDevices =  spotifyApi.getUsersAvailableDevices().build();
-        Device[] device = availableDevices.execute();
-        for (Device device2 : device) {
-            try {
-                StartResumeUsersPlaybackRequest startResumeUsersPlaybackRequest = spotifyApi.startResumeUsersPlayback().context_uri("spotify:playlist:37i9dQZF1DWT9uTRZAYj0c").device_id(device2.getId()).build();
-                startResumeUsersPlaybackRequest.execute();
-                log.info(device2.getId());
-                log.info(device2.getType());
-            }
-            catch (Exception e) {
-                return e.getMessage();
-            }
-            
+        JsonArray trackUris = new JsonArray();
+        for (String track : tracks) {
+            trackUris.add(track);
         }
-        
-        return "success";
+        log.info("[StartTracks]"+trackUris.toString());
+        spotifyApi.startResumeUsersPlayback().uris(trackUris).device_id(user.getDeviceId()).build().execute();
+        // for (String track : tracks) {
+        //     AddItemToUsersPlaybackQueueRequest addItemToUsersPlaybackQueueRequest = spotifyApi.addItemToUsersPlaybackQueue(track).device_id(user.getDeviceId()).build();
+        //     addItemToUsersPlaybackQueueRequest.execute();
+        // }
+    }
+
+    public User getUserProfile(String userName) throws IOException, ParseException, SpotifyWebApiException {
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        User userprofile = spotifyApi.getCurrentUsersProfile().build().execute();
+        return userprofile;
+    }
+
+    public void makePlaylist(String userName, String[] trackList, String playlistName) throws IOException, ParseException, SpotifyWebApiException{
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        Playlist newPlaylist = spotifyApi.createPlaylist(userName, playlistName).build().execute();
+        spotifyApi.addItemsToPlaylist(newPlaylist.getId(), trackList).build().execute();
+    }
+    
+    public String getAvaliableDevices(String userName) throws Exception {
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        return spotifyApi.getUsersAvailableDevices().build().execute()[1].getId();
+    }
+    
+    public void activateDevice(String userName, String deviceId) throws Exception {
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        JsonArray deviceids = new JsonArray();
+        deviceids.add(deviceId);
+        log.info("[activateDevice]"+deviceids.toString());
+        spotifyApi.transferUsersPlayback(deviceids).build().execute();
     }
 }

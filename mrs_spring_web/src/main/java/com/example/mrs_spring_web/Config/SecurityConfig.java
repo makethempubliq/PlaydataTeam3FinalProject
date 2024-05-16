@@ -46,7 +46,7 @@ public class SecurityConfig {
           // 1. 코드받기(인증) 성공시, 2. 엑세스토큰(권한) + 사용자프로필정보
           // 3. 사용자프로필 정보를 가져옴 4. 그 정보를 토대로 회원가입 진행  
           // .loginPage("/loginForm")
-          .defaultSuccessUrl("/test/login")
+          .defaultSuccessUrl("/main")
           .userInfoEndpoint(userInfo -> userInfo
             .userService(this.spotifyOauth2UserService)
           )

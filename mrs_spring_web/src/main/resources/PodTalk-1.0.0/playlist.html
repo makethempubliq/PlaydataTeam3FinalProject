@@ -29,6 +29,7 @@
 
     <link href="css/templatemo-pod-talk.css" rel="stylesheet">
     <link href="css/playlist.css" rel="stylesheet">
+
     <!--
 
 TemplateMo 584 Pod Talk
@@ -121,28 +122,38 @@ https://templatemo.com/tm-584-pod-talk
                         <div class="playlistimage">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSWXRfMV_PoMwsO3T_Tcgx94H-F_lBzKWgw&s"
                                 alt="플레이리스트 이미지" class="mr-3 playlist-image">
-                            <div class="icon" style="margin-top:15px;">
-                                <h4 class="d-inline-block mr-3" style="margin-right: 10px;">New Playlist : </h4>
+                            <div class="icon" style="margin-top:20px;">
+                                <h4 class="d-inline-block mr-3" style="margin-right: 10px;">Selected Theme : </h4>
+                                <button id="themeButton" class="btn btn-primary ml-3">theme1</button>
+                                <button id="themeButton" class="btn btn-primary ml-3">theme2</button>
+                            </div>
+                            <div class="ml-auto small" style="margin-bottom: 5px;">
+                                <span id="totalSongs"></span>
+                                <span id="totalDuration"></span>
+                            </div>
+                            <div class="d-inline-block" style="margin-top:5px; margin-bottom: 10px;">
                                 <i id="playIcon" class="bi bi-play-circle clickable"
-                                    style="font-size: 1.5em; margin-right: 6px;" data-toggle="tooltip" title="재생"></i>
+                                    style="font-size: 1.3em; margin-right: 6px;" data-toggle="tooltip" title="재생"></i>
                                 <i id="heartIcon" class="bi bi-heart clickable"
-                                    style="font-size: 1.5em; margin-right: 6px" data-toggle="tooltip"
+                                    style="font-size: 1.3em; margin-right: 6px" data-toggle="tooltip"
                                     title="플레이리스트 저장"></i>
-                                <i id="downloadIcon" class="bi bi-download clickable" style="font-size: 1.5em;"
+                                <i id="downloadIcon" class="bi bi-download clickable" style="font-size: 1.3em;"
                                     data-toggle="tooltip" title="스포티파이에 플레이리스트 저장"></i>
                             </div>
                         </div>
 
-                        <div class="ml-auto small">총 0곡, 0시간 0분</div>
+
                         <div class="container">
                             <ul class="list-group mt-3">
                                 <li class="list-group-item custom-list-group-item">
                                     <div class="d-flex align-items-center">
-                                        <img src="album1.jpg" alt="앨범 커버" class="album-cover mr-3">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfTLdLcm9L4WxStmNpe5irJOwpFjyrTMalLA&s"
+                                            alt="앨범 커버" class="album-cover mr-3">
                                         <div>
                                             <strong>노래 제목 1</strong><br>
                                             <span>아티스트 1</span>
                                         </div>
+                                        <span class="duration ml-auto">2:00</span>
                                     </div>
                                 </li>
 
@@ -153,6 +164,7 @@ https://templatemo.com/tm-584-pod-talk
                                             <strong>노래 제목 1</strong><br>
                                             <span>아티스트 1</span>
                                         </div>
+                                        <span class="duration ml-auto">1:30</span>
                                     </div>
                                 </li>
 
@@ -163,11 +175,12 @@ https://templatemo.com/tm-584-pod-talk
                                             <strong>노래 제목 1</strong><br>
                                             <span>아티스트 1</span>
                                         </div>
+                                        <span class="duration ml-auto">3:42</span>
                                     </div>
                                 </li>
                             </ul>
-
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -287,12 +300,12 @@ https://templatemo.com/tm-584-pod-talk
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
 
-
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/playlist.js"></script>
+    <script src="js/player.js"></script>
 
 </body>
 

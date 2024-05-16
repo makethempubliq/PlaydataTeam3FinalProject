@@ -1,0 +1,40 @@
+.album-cover {
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.custom-list-group-item {
+    border-width: 2px;
+    border-color: #dee2e6;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f5;
+    border: 1px solid #ccc;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    flex-grow: 1;
+}
+
+.icon {
+    text-align: right;
+    margin-left: auto;
+}
+
+.clickable:hover {
+    color: #0675CD;
+    cursor: pointer;
+}
+
+#themeButton {
+    height: 25px;
+    background-color: #208877;
+    border-color: #208877;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-right: 8px;
+    cursor: default;
+}

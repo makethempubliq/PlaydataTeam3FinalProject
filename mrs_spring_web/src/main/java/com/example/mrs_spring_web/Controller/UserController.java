@@ -52,6 +52,16 @@ public class UserController {
         return "musicplayer";
     }
 
+    @GetMapping("/playlist")
+    public String showplaylist(@RequestParam("id") String playlistId, Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception{
+        List<String> playlistTracks = spotifyService.getTracklistByPlaylist(userDetailsObj.getUsername(), playlistId);
+        String accesstoken = userService.getAccesstoken(userDetailsObj.getUsername());
+        model.addAttribute("accesstoken", accesstoken);
+        model.addAttribute("tracklist", playlistTracks);
+        model.addAttribute("trackDataList", spotifyService.getTracksdata(userDetailsObj.getUsername(), playlistTracks));
+        return "playlist";
+    }
+
     @GetMapping("/manager")
     public @ResponseBody String manager() {
         log.info("[SecurityController] manager start!!");

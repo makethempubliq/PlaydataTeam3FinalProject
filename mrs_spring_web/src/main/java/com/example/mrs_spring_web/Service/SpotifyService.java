@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.hc.core5.http.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +13,17 @@ import org.springframework.stereotype.Service;
 import com.example.mrs_spring_web.Model.Entity.UserEntity;
 import com.example.mrs_spring_web.Repository.UserRepository;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.neovisionaries.i18n.CountryCode;
 
 import lombok.extern.slf4j.Slf4j;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.SpotifyHttpManager;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
+import se.michaelthelin.spotify.model_objects.specification.Image;
 import se.michaelthelin.spotify.model_objects.specification.Playlist;
 import se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
-import se.michaelthelin.spotify.model_objects.specification.Recommendations;
 import se.michaelthelin.spotify.model_objects.specification.Track;
 import se.michaelthelin.spotify.model_objects.specification.User;
-import se.michaelthelin.spotify.requests.data.browse.GetRecommendationsRequest;
-import se.michaelthelin.spotify.requests.data.player.AddItemToUsersPlaybackQueueRequest;
 
 @Slf4j
 @Service
@@ -96,5 +94,34 @@ public class SpotifyService {
         deviceids.add(deviceId);
         log.info("[activateDevice]"+deviceids.toString());
         spotifyApi.transferUsersPlayback(deviceids).build().execute();
+    }
+
+    public Image getPlaylistArt(String userName, String playlistId) throws Exception {
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        Image[] playlistArts = spotifyApi.getPlaylistCoverImage(playlistId).build().execute();
+        return playlistArts[0];
+    }
+
+    public List<Track> getTracksdata(String userName, List<String> trackids) throws Exception {
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        List<Track> trackDataList = new ArrayList<>();
+        for (String trackid : trackids) {
+            Track trackdata = spotifyApi.getTrack(trackid.substring(14)).build().execute();
+            trackDataList.add(trackdata);
+        }
+        return trackDataList;
+    }
+
+    public List<String> getArtistName(String userName, Track track) throws Exception {
+        List<String> artistNames = new ArrayList<>();
+
+        ArtistSimplified[] artists = track.getArtists();
+        for (ArtistSimplified artist: artists) {
+            artistNames.add(artist.getName());
+        }
+        return artistNames;
+
     }
 }

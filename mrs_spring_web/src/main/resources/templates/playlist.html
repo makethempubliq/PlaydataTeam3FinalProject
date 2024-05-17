@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pod Talk Free CSS Template by TemplateMo</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../static/css/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+
+    <link href="../static/css/templatemo-pod-talk.css" rel="stylesheet">
+    <link href="../static/css/playlist.css" rel="stylesheet">
+
+    <!--
+
+TemplateMo 584 Pod Talk
+
+https://templatemo.com/tm-584-pod-talk
+
+-->
+
+</head>
+
+<body>
+    
+    <main>
+        
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand me-lg-5 me-0" href="index.html">
+                    <img src="../static/images/Designer.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                </a>
+                <!-- 
+                <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
+                    <div class="input-group input-group-lg">
+                        <input name="search" type="search" class="form-control" id="search" placeholder="Search Podcast"
+                            aria-label="Search">
+
+                        <button type="submit" class="form-control" id="submit">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="listing-page.html">Listing Page</a></li>
+
+                                <li><a class="dropdown-item active" href="detail-page.html">Detail Page</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+
+                    <div class="ms-4">
+                        <a href="#section_2" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <header class="site-header d-flex flex-column justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12 text-center">
+
+                        <h2 class="mb-0">Make Your Own Playlist!
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <section class="playlist section-padding" id="section_2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <div class="playlistimage">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSWXRfMV_PoMwsO3T_Tcgx94H-F_lBzKWgw&s"
+                                alt="플레이리스트 이미지" class="mr-3 playlist-image">
+                            <div class="icon" style="margin-top:20px;">
+                                <h4 class="d-inline-block mr-3" style="margin-right: 10px;">Selected Theme : </h4>
+                                <button id="themeButton" class="btn btn-primary ml-3">theme1</button>
+                                <button id="themeButton" class="btn btn-primary ml-3">theme2</button>
+                            </div>
+                            <div class="ml-auto small" style="margin-bottom: 5px;">
+                                <span id="totalSongs"></span>
+                                <span id="totalDuration"></span>
+                            </div>
+                            <div class="d-inline-block" style="margin-top:5px; margin-bottom: 10px;">
+                                <i id="playIcon" class="bi bi-play-circle clickable"
+                                    style="font-size: 1.3em; margin-right: 6px;" data-toggle="tooltip" title="재생" type="button"></i>
+                                <i id="heartIcon" class="bi bi-heart clickable"
+                                    style="font-size: 1.3em; margin-right: 6px" data-toggle="tooltip"
+                                    title="플레이리스트 저장"></i>
+                                <i id="downloadIcon" class="bi bi-download clickable" style="font-size: 1.3em;"
+                                    data-toggle="tooltip" title="스포티파이에 플레이리스트 저장"></i>
+                                <form id="playlist-form" class="playlist-form" method="post" action="/api/v1/saveplaylist">
+                                    <label for="playlist-name">플레이리스트 이름:</label>
+                                    <input type="text" id="playlist-name" name="playlistName">
+                                    <input type="hidden" id="tracklist" name="tracklist" value="{{tracklist}}">
+                                    <button type="submit">플레이리스트 만들기</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="container">
+                            <ul class="list-group mt-3">
+                                {{#trackDataList}}
+                                <li class="list-group-item custom-list-group-item">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfTLdLcm9L4WxStmNpe5irJOwpFjyrTMalLA&s"
+                                            alt="앨범 커버" class="album-cover mr-3">
+                                        <div>
+                                            <strong>{{name}}</strong><br>
+                                            
+                                            <span>{{#artists}}{{name}}, {{/artists}}</span>
+                                        </div>
+                                        <span class="duration ml-auto">2:00</span>
+                                    </div>
+                                </li>
+                                {{/trackDataList}}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                    <div class="subscribe-form-wrap">
+                        <h6>Subscribe. Every weekly.</h6>
+
+                        <form class="custom-form subscribe-form" action="#" method="get" role="form">
+                            <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
+                                class="form-control" placeholder="Email Address" required="">
+
+                            <div class="col-lg-12 col-12">
+                                <button type="submit" class="form-control" id="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-md-0 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Contact</h6>
+
+                    <p class="mb-2"><strong class="d-inline me-2">Phone:</strong> 010-020-0340</p>
+
+                    <p>
+                        <strong class="d-inline me-2">Email:</strong>
+                        <a href="#">inquiry@pod.co</a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12">
+                    <h6 class="site-footer-title mb-3">Download Mobile</h6>
+
+                    <div class="site-footer-thumb mb-4 pb-2">
+                        <div class="d-flex flex-wrap">
+                            <a href="#">
+                                <img src="../static/images/app-store.png" class="me-3 mb-2 mb-lg-0 img-fluid" alt="">
+                            </a>
+
+                            <a href="#">
+                                <img src="../static/images/play-store.png" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+                    <h6 class="site-footer-title mb-3">Social</h6>
+
+                    <ul class="social-icon">
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link bi-instagram"></a>
+                        </li>
+
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link bi-twitter"></a>
+                        </li>
+
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link bi-whatsapp"></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container pt-5">
+            <div class="row align-items-center">
+
+                <div class="col-lg-2 col-md-3 col-12">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="../static/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                    </a>
+                </div>
+
+                <div class="col-lg-7 col-md-9 col-12">
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Homepage</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Browse episodes</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Help Center</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-12">
+                    <p class="copyright-text mb-0">Copyright © 2036 Talk Pod Company
+                        <br><br>
+                        Design: <a rel="nofollow" href="https://templatemo.com/page/1" target="_parent">TemplateMo</a>
+                    </p> Distribution: <a rel="nofollow" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/custom.js"></script>
+    <script src="../static/js/playlist.js"></script>
+    <script src="../static/js/player.js"></script>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = '{{accesstoken}}';
+            const player = new Spotify.Player({
+                name: 'Web Playback SDK Quick Start Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
+
+            // Ready
+        player.addListener('ready', async ({ device_id }) => {
+            console.log('Ready with Device ID', device_id);
+
+            // Device ID를 백엔드로 전송
+            await fetch('/api/v1/deviceid', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: device_id
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to send device ID to backend');
+                }
+                console.log('Device ID sent successfully to backend');
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+            
+            // 활성화된 디바이스 설정
+            await fetch('/api/v1/activatedevice', {
+                method: 'POST'
+            });
+
+            // 음악 설정
+            await fetch('/api/v1/setmusic', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(tracklistValue)
+            });
+
+            console.log('All tasks completed.');
+        });
+
+        // Not Ready
+        player.addListener('not_ready', ({ device_id }) => {
+            console.log('Device ID has gone offline', device_id);
+        });
+
+        player.addListener('initialization_error', ({ message }) => {
+            console.error(message);
+        });
+
+        player.addListener('authentication_error', ({ message }) => {
+            console.error(message);
+        });
+
+        player.addListener('account_error', ({ message }) => {
+            console.error(message);
+        });
+
+        document.getElementById('playIcon').onclick = function() {
+            player.togglePlay();
+        };
+
+        // document.getElementById('prevTrack').onclick = function() {
+        //     player.previousTrack();
+        // };
+
+        // document.getElementById('nextTrack').onclick = function() {
+        //     player.nextTrack();
+        // };
+
+        player.connect();
+    }
+    </script>
+
+    <script>
+        // 트랙리스트 hidden 필드의 값을 양쪽에 있는 대괄호를 제거하여 수정
+        var tracklistInput = document.getElementById("tracklist");
+        var tracklistValue = tracklistInput.value;
+        tracklistValue = tracklistValue.substring(1, tracklistValue.length - 1);
+        tracklistInput.value = tracklistValue;
+    </script>
+
+</body>
+<script>
+    document.getElementById("playlist-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // 폼 제출을 중단하여 페이지 이동을 막습니다.
+
+        // form 데이터 가져오기
+        var formData = new FormData(this);
+
+        // AJAX 요청 보내기
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/v1/saveplaylist", true);
+        xhr.onload = function() {
+            // 요청 완료 후 처리할 작업
+            if (xhr.status === 200) {
+                // 요청이 성공하면 알림을 표시하거나 다른 작업을 수행할 수 있습니다.
+                alert("플레이리스트가 만들어졌습니다!");
+            } else {
+                // 요청이 실패한 경우에 대한 처리
+                alert("요청에 실패했습니다.");
+            }
+        };
+        xhr.send(formData); // 폼 데이터를 서버로 전송합니다.
+    });
+</script>
+
+</html>

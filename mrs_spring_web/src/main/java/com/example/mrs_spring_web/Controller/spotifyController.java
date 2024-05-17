@@ -1,14 +1,12 @@
 package com.example.mrs_spring_web.Controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +19,7 @@ import com.example.mrs_spring_web.Service.SpotifyService;
 import com.example.mrs_spring_web.Service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
+import se.michaelthelin.spotify.model_objects.specification.Image;
 
 @Slf4j
 @RestController
@@ -83,5 +82,13 @@ public class spotifyController {
         log.info("[ActivateDevice]");
         String username = userDetailsObj.getUsername();
         spotifyService.activateDevice(username, userService.getDeviceId(username));
+    }
+
+    @GetMapping("/getplaylistart")
+    @ResponseBody
+    public String getPlaylistArt(@RequestParam("id") String playlistId, Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj) throws Exception{
+        String username = userDetailsObj.getUsername();
+        Image playlistArt = spotifyService.getPlaylistArt(username, playlistId);
+        return playlistArt.getUrl();
     }
 }

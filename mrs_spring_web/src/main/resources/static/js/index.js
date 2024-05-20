@@ -1,7 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // 모든 playIcon 요소를 찾습니다.
-    const playIcons = document.querySelectorAll("#playIcon");
+    const playIcons = document.querySelectorAll('.bi-play-circle');
 
     // 각 playIcon 요소에 클릭 이벤트 리스너를 추가합니다.
     playIcons.forEach(icon => {
@@ -24,18 +23,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     });
-
-    // Tooltip 초기화
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
 });
-
-function confirmDelete() {
-    const result = confirm("정말 삭제하시겠습니까?");
-    if (result) {
-        // deletePlaylist();
-    }
-}
-
-

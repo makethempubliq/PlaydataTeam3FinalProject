@@ -1,0 +1,12 @@
+.service-name {
+    font-family: "Archivo Black", sans-serif;
+    /* font-weight: 400; */
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.dash {
+    letter-spacing: 10px;
+    font-weight: bold;
+    color: blue;
+}

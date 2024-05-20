@@ -1,15 +1,3 @@
-
-document.getElementById("playIcon").addEventListener("click", function () {
-    var playIcon = document.getElementById("playIcon");
-    if (playIcon.classList.contains("bi-play-circle")) {
-        playIcon.classList.remove("bi-play-circle");
-        playIcon.classList.add("bi-pause-circle");
-    } else {
-        playIcon.classList.remove("bi-pause-circle");
-        playIcon.classList.add("bi-play-circle");
-    }
-});
-
 document.getElementById("heartIcon").addEventListener("click", function () {
     var heartIcon = document.getElementById("heartIcon");
     if (heartIcon.classList.contains("bi-heart")) {
@@ -22,11 +10,26 @@ document.getElementById("heartIcon").addEventListener("click", function () {
 });
 
 
-
-
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const downloadIcon = document.getElementById("downloadIcon");
+    const playlistForm = document.getElementById("playlist-form");
+
+    downloadIcon.addEventListener("click", function () {
+
+        if (playlistForm.style.display === "none" || playlistForm.style.display === "") {
+            playlistForm.style.display = "block";
+        } else {
+            playlistForm.style.display = "none";
+        }
+    });
+
+    playlistForm.style.display = "none";
+});
+
 
 
 
@@ -65,3 +68,23 @@ window.onload = function () {
     displayTotalDuration();
     displayTotalSongs();
 };
+
+document.getElementById("playIcon").addEventListener("click", function () {
+    fetch('../templates/playerbar.html')
+        .then(response => response.text())
+        .then(html => {
+            document.body.insertAdjacentHTML('beforeend', html);
+
+            // HTML에 연결된 CSS 파일을 가져와 삽입합니다.
+            const linkElement = document.createElement('link');
+            linkElement.rel = 'stylesheet';
+            linkElement.href = '../static/css/playerbar.css';
+            document.head.appendChild(linkElement);
+
+
+            // HTML에 연결된 JavaScript 파일을 가져와 실행합니다.
+            const scriptElement = document.createElement('script');
+            scriptElement.src = '../static/js/playerbar.js';
+            document.body.appendChild(scriptElement);
+        });
+});

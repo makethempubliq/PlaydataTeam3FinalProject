@@ -39,6 +39,8 @@ public class UserController {
     public String main(Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception{
         User currentUser = spotifyService.getUserProfile(userDetailsObj.getUsername());
         model.addAttribute("username", currentUser.getDisplayName());
+        model.addAttribute("koreatoptrackart", spotifyService.getPlaylistArt(userDetailsObj.getUsername(), "37i9dQZEVXbNxXF4SkHj9F").getUrl());
+        model.addAttribute("globaltoptrackart", spotifyService.getPlaylistArt(userDetailsObj.getUsername(), "37i9dQZEVXbMDoHDwVN2tF").getUrl());
         return "main";
     }
 
@@ -46,6 +48,7 @@ public class UserController {
     public String musicplayer(@RequestParam("id") String playlistId, Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception{
         List<String> playlistTracks = spotifyService.getTracklistByPlaylist(userDetailsObj.getUsername(), playlistId);
         String accesstoken = userService.getAccesstoken(userDetailsObj.getUsername());
+        
         model.addAttribute("accesstoken", accesstoken);
         model.addAttribute("tracklist", playlistTracks);
         model.addAttribute("playlistTracks", playlistTracks.toString());
@@ -56,6 +59,9 @@ public class UserController {
     public String showplaylist(@RequestParam("id") String playlistId, Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception{
         List<String> playlistTracks = spotifyService.getTracklistByPlaylist(userDetailsObj.getUsername(), playlistId);
         String accesstoken = userService.getAccesstoken(userDetailsObj.getUsername());
+        if (playlistId != null){
+            model.addAttribute("playlistArt", spotifyService.getPlaylistArt(userDetailsObj.getUsername(), playlistId).getUrl());
+        }
         model.addAttribute("accesstoken", accesstoken);
         model.addAttribute("tracklist", playlistTracks);
         model.addAttribute("trackDataList", spotifyService.getTracksdata(userDetailsObj.getUsername(), playlistTracks));
@@ -73,5 +79,11 @@ public class UserController {
         log.info("[SecurityController] loginForm start!!");
         return "loginForm";
     }
+
+    @GetMapping("/test")
+    public String testpage() {
+        return "test";
+    }
+    
 
 }

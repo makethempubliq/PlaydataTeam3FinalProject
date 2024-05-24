@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // 모든 playIcon 요소를 찾습니다.
     const playIcons = document.querySelectorAll("#playIcon");

@@ -37,7 +37,7 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable);
     http
       .authorizeHttpRequests(authorize -> authorize
-        .requestMatchers("/user/**").authenticated() // 인증이되면 접근 가능 
+        .requestMatchers("/ue/**").authenticated() // 인증이되면 접근 가능 
         .requestMatchers("/manager/**").hasAnyAuthority("ADMIN", "MANAGER") // 인증&인가가 되면 접근 가능 
         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN") // 인증&인가가 되면 접근 가능
         .anyRequest().permitAll() // 누구나 접근 가능 
@@ -50,13 +50,8 @@ public class SecurityConfig {
           .userInfoEndpoint(userInfo -> userInfo
             .userService(this.spotifyOauth2UserService)
           )
-      )
-      .formLogin(formLogin -> formLogin
-        .loginPage("/loginForm")
-        .loginProcessingUrl("/login") // login 주소가 호출이 되면, PrincipalDetailsService.loadUserByUsername() 실행 
-        .defaultSuccessUrl("/test/login") // 시큐리티 로그인 성공시 해당 url 주소로 이동 
-        .permitAll()
       );
+
 
     return http.build();
   }

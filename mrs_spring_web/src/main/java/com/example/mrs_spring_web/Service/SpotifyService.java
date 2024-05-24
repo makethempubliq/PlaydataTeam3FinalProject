@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.SpotifyHttpManager;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlayingContext;
 import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import se.michaelthelin.spotify.model_objects.specification.Image;
 import se.michaelthelin.spotify.model_objects.specification.Playlist;
@@ -123,5 +124,12 @@ public class SpotifyService {
         }
         return artistNames;
 
+    }
+
+    public CurrentlyPlayingContext getCurrentPlayState(String userName) throws Exception {
+        UserEntity user = userRepository.findByUsername(userName);
+        spotifyApi.setAccessToken(user.getAccessToken());
+        CurrentlyPlayingContext currentlyPlayingContext = spotifyApi.getInformationAboutUsersCurrentPlayback().build().execute();
+        return currentlyPlayingContext;
     }
 }

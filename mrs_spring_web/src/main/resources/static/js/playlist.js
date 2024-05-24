@@ -63,14 +63,48 @@ function displayTotalSongs() {
     document.getElementById('totalSongs').textContent = '총 ' + totalSongs + '곡,';
 }
 
+
+
+document.getElementById("playlist-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // 폼 제출을 중단하여 페이지 이동을 막습니다.
+
+    // form 데이터 가져오기
+    var formData = new FormData(this);
+
+    // AJAX 요청 보내기
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/v1/saveplaylist", true);
+    xhr.onload = function () {
+        // 요청 완료 후 처리할 작업
+        if (xhr.status === 200) {
+            // 요청이 성공하면 알림을 표시하거나 다른 작업을 수행할 수 있습니다.
+            alert("플레이리스트가 만들어졌습니다!");
+        } else {
+            // 요청이 실패한 경우에 대한 처리
+            alert("요청에 실패했습니다.");
+        }
+    };
+    xhr.send(formData); // 폼 데이터를 서버로 전송합니다.
+});
+
 // 페이지 로드시 총 시간과 총 곡 수 표시
 window.onload = function () {
     displayTotalDuration();
     displayTotalSongs();
 };
 
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const scriptElement = document.createElement('script');
+        scriptElement.src = src;
+        scriptElement.onload = resolve;
+        scriptElement.onerror = reject;
+        document.body.appendChild(scriptElement);
+    });
+}
+
 document.getElementById("playIcon").addEventListener("click", function () {
-    fetch('../templates/playerbar.html')
+    fetch('/playerbar?trackdata='+tracklistValue)
         .then(response => response.text())
         .then(html => {
             document.body.insertAdjacentHTML('beforeend', html);
@@ -84,7 +118,16 @@ document.getElementById("playIcon").addEventListener("click", function () {
 
             // HTML에 연결된 JavaScript 파일을 가져와 실행합니다.
             const scriptElement = document.createElement('script');
-            scriptElement.src = '../static/js/playerbar.js';
-            document.body.appendChild(scriptElement);
+            const spotifyplayer = document.createElement('script');
+            
+            loadScript('../static/js/playerbar.js')
+                .then(() => loadScript('https://sdk.scdn.co/spotify-player.js'))
+                .then(() => {
+                    console.log('All scripts loaded successfully.');
+                })
+                .catch(error => {
+                    console.error('Error loading scripts:', error);
+                });
         });
 });
+

@@ -2,6 +2,7 @@ package com.example.mrs_spring_web.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import com.example.mrs_spring_web.Service.SpotifyService;
 import com.example.mrs_spring_web.Service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
+import se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlayingContext;
 import se.michaelthelin.spotify.model_objects.specification.Image;
 
 @Slf4j
@@ -91,4 +93,11 @@ public class spotifyController {
         Image playlistArt = spotifyService.getPlaylistArt(username, playlistId);
         return playlistArt.getUrl();
     }
+
+    @GetMapping("/playerbar")
+    public CurrentlyPlayingContext getPlayerState(Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj) throws Exception{
+        String username = userDetailsObj.getUsername();
+        return spotifyService.getCurrentPlayState(username);
+    }
+    
 }

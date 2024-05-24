@@ -29,7 +29,9 @@
 
     <link href="../static/css/templatemo-pod-talk.css" rel="stylesheet">
     <link href="../static/css/playlist.css" rel="stylesheet">
-    <script src="../static/js/musicplayer.js"></script>
+    <script src="../static/js/diffuser.js"></script>
+    
+    
     
 
     <!--
@@ -45,7 +47,6 @@ https://templatemo.com/tm-584-pod-talk
 <body>
 
     <main>
-
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand me-lg-5 me-0" href="index.html">
@@ -119,17 +120,25 @@ https://templatemo.com/tm-584-pod-talk
         <section class="playlist section-padding" id="section_2">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-8 col-12 mx-auto">
                         <div class="playlistimage">
-                            {{^playlistimage}}
-                            <img id = diffuser src=""
-                                alt="플레이리스트 이미지" class="mr-3 playlist-image">
-                            {{/playlistimage}}
-                            {{#playlistimage}}
+                            {{#playlistArt}}
                             <img src="{{playlistArt}}"
                                 alt="플레이리스트 이미지" class="mr-3 playlist-image">
-                            {{/playlistimage}}
+                            {{/playlistArt}}
+                            {{^playlistArt}}
+                            <img id ="diffuser" src=""
+                                alt="플레이리스트 이미지" class="mr-3 playlist-image">
+                            <script>
+                                getPlaylistArt({ inputs: "{{themes}}" }).then((blob) => {
+                                    if (blob) {
+                                        const url = URL.createObjectURL(blob);
+                                        const img = document.getElementById("diffuser");
+                                        img.src = url;
+                                    }
+                                });
+                            </script>
+                            {{/playlistArt}}
                             <div class="icon" style="margin-top:20px;">
                                 <h4 class="d-inline-block mr-3" style="margin-right: 10px;">Selected Theme : </h4>
                                 <button id="themeButton" class="btn btn-primary ml-3">theme1</button>
@@ -161,17 +170,19 @@ https://templatemo.com/tm-584-pod-talk
                                 {{#trackDataList}}
                                 <li class="list-group-item custom-list-group-item">
                                 <div class="d-flex align-items-center">
-                                    {{#album.images}}
+                                    {{#album.images.0}}                             
                                     <img src="{{url}}" alt="앨범 커버" class="album-cover mr-3">
-                                    {{/album.images}}
+                                    {{/album.images.0}}  
                                     <div>
                                         <strong>{{name}}</strong><br>
-                                        <span>{{#artists}}{{name}}, {{/artists}}</span>
+                                        <span id="artists{{name}}"></span>
                                     </div>
-                                    <span id="duration{{durationMs}}" class="duration ml-auto"></span>
+                                    <span id="duration{{name}}{{durationMs}}" class="duration ml-auto"></span>
                                     <script>
-                                        var durationtime = msToMinutesSeconds("{{durationMs}}")
-                                        document.getElementById('duration'+"{{durationMs}}").textContent = durationtime
+                                        var durationtime = msToMinutesSeconds("{{durationMs}}");
+                                        document.getElementById('duration' + "{{name}}" + "{{durationMs}}").textContent = durationtime;
+                                        var artists = "{{#artists}}{{name}}, {{/artists}}".slice(0, -2); // 마지막 쉼표와 공백 제거
+                                        document.getElementById('artists' + "{{name}}").textContent = artists;
                                     </script>
                                 </div>
                                 </li>
@@ -303,91 +314,7 @@ https://templatemo.com/tm-584-pod-talk
     <script src="../static/js/owl.carousel.min.js"></script>
     <script src="../static/js/custom.js"></script>
     <script src="../static/js/playlist.js"></script>
-    <script src="../static/js/diffuser.js"></script>
-
-
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script>
-        window.onSpotifyWebPlaybackSDKReady = () => {
-            const token = '{{accesstoken}}';
-            const player = new Spotify.Player({
-                name: 'Web Playback SDK Quick Start Player',
-                getOAuthToken: cb => { cb(token); },
-                volume: 0.5
-            });
-
-            // Ready
-            player.addListener('ready', async ({ device_id }) => {
-                console.log('Ready with Device ID', device_id);
-
-                // Device ID를 백엔드로 전송
-                await fetch('/api/v1/deviceid', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: device_id
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Failed to send device ID to backend');
-                        }
-                        console.log('Device ID sent successfully to backend');
-                    })
-                    .catch(error => {
-                        console.error(error.message);
-                    });
-
-                // 활성화된 디바이스 설정
-                await fetch('/api/v1/activatedevice', {
-                    method: 'POST'
-                });
-
-                // 음악 설정
-                await fetch('/api/v1/setmusic', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(tracklistValue)
-                });
-
-                console.log('All tasks completed.');
-            });
-
-            // Not Ready
-            player.addListener('not_ready', ({ device_id }) => {
-                console.log('Device ID has gone offline', device_id);
-            });
-
-            player.addListener('initialization_error', ({ message }) => {
-                console.error(message);
-            });
-
-            player.addListener('authentication_error', ({ message }) => {
-                console.error(message);
-            });
-
-            player.addListener('account_error', ({ message }) => {
-                console.error(message);
-            });
-
-            document.getElementById('playIcon').onclick = function () {
-                player.togglePlay();
-            };
-
-            // document.getElementById('prevTrack').onclick = function() {
-            //     player.previousTrack();
-            // };
-
-            // document.getElementById('nextTrack').onclick = function() {
-            //     player.nextTrack();
-            // };
-
-            player.connect();
-        }
-    </script>
-
+    
     <script>
         // 트랙리스트 hidden 필드의 값을 양쪽에 있는 대괄호를 제거하여 수정
         var tracklistInput = document.getElementById("tracklist");
@@ -398,28 +325,6 @@ https://templatemo.com/tm-584-pod-talk
     
 
 </body>
-<script>
-    document.getElementById("playlist-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // 폼 제출을 중단하여 페이지 이동을 막습니다.
 
-        // form 데이터 가져오기
-        var formData = new FormData(this);
-
-        // AJAX 요청 보내기
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/v1/saveplaylist", true);
-        xhr.onload = function () {
-            // 요청 완료 후 처리할 작업
-            if (xhr.status === 200) {
-                // 요청이 성공하면 알림을 표시하거나 다른 작업을 수행할 수 있습니다.
-                alert("플레이리스트가 만들어졌습니다!");
-            } else {
-                // 요청이 실패한 경우에 대한 처리
-                alert("요청에 실패했습니다.");
-            }
-        };
-        xhr.send(formData); // 폼 데이터를 서버로 전송합니다.
-    });
-</script>
 
 </html>

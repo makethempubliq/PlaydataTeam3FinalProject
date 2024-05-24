@@ -44,3 +44,66 @@ function showSubTopics(mainCategory) {
         $(this).toggleClass('btn-selected');
     });
 }
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("themesubmit").addEventListener("click", function () {
+        const inputtext = document.getElementById("themeinput").value;
+        const hour = document.getElementById("hour").value;
+        const minute = document.getElementById("minute").value;
+    
+        const totalduration = hour * 60 + minute;
+    
+        const data = {
+            inputText: inputtext,
+            totalDuration: totalduration
+        };
+    
+        fetch("/api/v1/flask/themeselect", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+    
+            // Extract the necessary data for the second request
+            const tokenizedTheme = data.tokenizedTheme;
+            const trackCounts = data.trackCounts;
+    
+            // Create the data object for the second request
+            const trackData = {
+                tokenizedTheme: tokenizedTheme,
+                trackCounts: trackCounts
+            };
+    
+            // Send the second POST request to get recommended tracks
+            return fetch("/api/v1/flask/gettracks", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(trackData)
+            });
+        })
+        .then(response => response.json())
+        .then(trackData => {
+            console.log('Recommended Tracks:', trackData);
+            const tokenizedTheme = trackData.tokenizedTheme;
+            const trackUris = trackData.trackUris;
+            // Create a URL with query parameters
+            const queryParams = new URLSearchParams();
+            queryParams.append('tokenizedTheme', JSON.stringify(tokenizedTheme));
+
+        // Add recommended tracks to query parameters
+            queryParams.append('recommendedtracks', JSON.stringify(trackUris));
+            // Redirect to /playlist with the track data as query parameters
+            window.location.href = `/playlist?${queryParams.toString()}`;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+    );
+});

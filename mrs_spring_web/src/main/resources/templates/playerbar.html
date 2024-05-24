@@ -29,24 +29,23 @@
 <body>
     <div id="player-bar" class="player-bar">
         <div class="player-column left-column">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDX3b62OofJa5NUdvnlqXld1ImeAsJ9lGdYA&s"
+            <img id="albumCover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDX3b62OofJa5NUdvnlqXld1ImeAsJ9lGdYA&s"
                 alt="Album Cover" class="album-cover">
             <div class="track-info">
-                <p class="track-title">트랙 제목</p>
-                <p class="artist-name">아티스트명</p>
+                <p id="trackTitle" class="track-title">트랙 제목</p>
+                <p id="artistName" class="artist-name">아티스트명</p>
             </div>
         </div>
         <div class="player-column center-column">
             <div class="control-icons">
-                <i class="bi bi-chevron-double-left control-icon clickable"></i>
-                <i class="bi bi-play-circle-fill control-icon clickable" id="playIcon"></i>
-                <i class="bi bi-chevron-double-right control-icon clickable"></i>
-
+                <i class="bi bi-chevron-double-left control-icon clickable" id="prevIcon"></i>
+                <i class="bi bi-pause-circle-fill control-icon clickable" id="playIcon2"></i>
+                <i class="bi bi-chevron-double-right control-icon clickable" id="nextIcon"></i>
             </div>
             <div class="progress-container">
-                <p class="time-display">0:00</p>
-                <progress class="progress-bar" value="0" max="100"></progress>
-                <p class="time-display">0:00</p>
+                <p id="position" class="time-display">0:00</p>
+                <progress id="progressbar" class="progress-bar" value="0" max="100"></progress>
+                <p id="duration" class="time-display">0:00</p>
             </div>
         </div>
         <div class="player-column right-column">
@@ -58,68 +57,30 @@
     <div id="playlist-sidebar" class="playlist-sidebar">
         <div class="container">
             <ul class="list-group mt-3">
+                {{#trackDataList}}
                 <li class="list-group-item player-list-group-item">
                     <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfTLdLcm9L4WxStmNpe5irJOwpFjyrTMalLA&s"
+                        {{#album.images.0}}
+                        <img src="{{url}}"
                             alt="앨범 커버" class="album-cover-list mr-3">
+                        {{/album.images.0}}
                         <div>
-                            <p>Track 1</p>
-                            <p>Artist</p>
+                            <p>{{name}}</p>
+                            <span id="artists2{{name}}"></span>
                         </div>
                     </div>
                 </li>
-
-                <li class="list-group-item player-list-group-item">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDX3b62OofJa5NUdvnlqXld1ImeAsJ9lGdYA&s"
-                            alt="앨범 커버" class="album-cover-list mr-3">
-                        <div>
-                            <p>Track 2</p>
-                            <p>Artist</p>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item player-list-group-item">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI5XiFi1prcNJiYcmGjPXlo6lrkUBBiIQ1Rg&s"
-                            alt="앨범 커버" class="album-cover-list mr-3">
-                        <div>
-                            <p>Track 3</p>
-                            <p>Artist</p>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item player-list-group-item">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2LT78ZIMG2jbK9RQF1G3EwBGJB7Z3N9HXaQ&s"
-                            alt="앨범 커버" class="album-cover-list mr-3">
-                        <div>
-                            <p>Track 4</p>
-                            <p>Artist</p>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item player-list-group-item">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFLLaSHv2mpX7pr1N9_zXynA_JT86VDa1_oA&s"
-                            alt="앨범 커버" class="album-cover-list mr-3">
-                        <div>
-                            <p>Track 5</p>
-                            <p>Artist</p>
-                        </div>
-                    </div>
-                </li>
-
-
+                {{/trackDataList}}
             </ul>
         </div>
     </div>
 
-
-    <script src="../static/js/playerbar.js"></script>
+    <div>
+        <input type="hidden" id="tracklist" name="tracklist" value="{{tracklist}}">
+    </div>
+    <div>
+        <input type="hidden" id="accesstoken" name="accesstoken" value="{{accesstoken}}">
+    </div>
 </body>
 
 </html>

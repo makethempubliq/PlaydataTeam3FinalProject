@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pod Talk Free CSS Template by TemplateMo</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../static/css/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+
+    <link href="../static/css/templatemo-pod-talk.css" rel="stylesheet">
+    <!--
+
+TemplateMo 584 Pod Talk
+
+https://templatemo.com/tm-584-pod-talk
+
+-->
+
+    <style>
+        /* 선택된 버튼 스타일링 */
+        .btn-selected {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* 선으로 구분되는 스타일 */
+        .divider {
+            border-top: 1px solid #dee2e6;
+        }
+
+        /* 카드 내부 버튼 간격 조정 */
+        .card-body .btn {
+            margin-bottom: 5px;
+        }
+
+        .topic-btn {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main>
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand me-lg-5 me-0" href="index.html">
+                    <img src="../static/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                </a>
+                <!-- 
+                <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
+                    <div class="input-group input-group-lg">
+                        <input name="search" type="search" class="form-control" id="search" placeholder="Search Podcast"
+                            aria-label="Search">
+
+                        <button type="submit" class="form-control" id="submit">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="listing-page.html">Listing Page</a></li>
+
+                                <li><a class="dropdown-item active" href="detail-page.html">Detail Page</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+
+                    <div class="ms-4">
+                        <a href="#section_2" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <header class="site-header d-flex flex-column justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12 text-center">
+
+                        <h2 class="mb-0">Make Your Own Playlist!
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <section class="theme selection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <div class="section-title-wrap mb-5">
+                            <h4 class="section-title">Choose Your Theme</h4>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5">
+                                <div class="container mt-5">
+                                    <form id="topicForm">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="topic-container">
+                                                    <div id="selectedTopics">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-primary btn-block topic-btn "
+                                                                    data-topic="감정">감정</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-primary btn-block topic-btn"
+                                                                    data-topic="계절">계절</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-primary btn-block topic-btn"
+                                                                    data-topic="운동">운동</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-primary btn-block topic-btn"
+                                                                    data-topic="여행">여행</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div>
+                                        <input id="themeinput" type="text" class="임시">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <!-- 오른쪽 컨테이너 -->
+                                <div class="container mt-5">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="subtopic-container">
+                                                <div id="selectedSubTopics" class="row">
+                                                    <!-- 대분류 선택 시 여기에 해당 대분류의 소분류 버튼이 동적으로 추가됩니다 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-12">
+                                <div class="section-title-wrap mb-5" style="margin-top: 50px;">
+                                    <h4 class="section-title">Enter the Duration</h4>
+                                </div>
+                            </div>
+                            <!-- 희망 재생 시간 입력 컨테이너 -->
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">시간</span>
+                                        <input id="hour" type="number" class="form-control" placeholder="시간을 입력하세요"
+                                            aria-label="시간을 입력하세요">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">분</span>
+                                        <input id="minute" type="number" class="form-control" placeholder="분을 입력하세요"
+                                            aria-label="분을 입력하세요" min="0" max="60">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container mt-3 mb-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <button id="themesubmit" type="submit" form="topicForm" class="btn custom-btn smoothscroll mt-3"
+                                            style="width: 100%;">Create</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+
+        <div class="container pt-5">
+            <div class="row align-items-center">
+
+                <div class="col-lg-2 col-md-3 col-12">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="../static/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                    </a>
+                </div>
+
+                <!-- <div class="col-lg-7 col-md-9 col-12">
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Homepage</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Browse episodes</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Help Center</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Contact Us</a>
+                        </li>
+                    </ul>
+                </div> -->
+
+                <div class="col-lg-7 col-md-9 col-12">
+                    <p class="copyright-text mb-0">Copyright © 2036 Talk Pod Company
+                        <br><br>
+                        <!-- Design: <a rel="nofollow" href="https://templatemo.com/page/1" target="_parent">TemplateMo</a>
+                    </p> Distribution: <a rel="nofollow" href="https://themewagon.com" target="_blank">ThemeWagon</a> -->
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/custom.js"></script>
+    <script src="../static/js/themepage.js"></script>
+
+</body>
+
+</html>

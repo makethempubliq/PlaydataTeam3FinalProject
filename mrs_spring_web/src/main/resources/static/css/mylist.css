@@ -7,7 +7,37 @@
     margin-right: 15px;
 }
 
-.custom-list-group-item {
+.track-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-title {
+    margin: 0;
+    font-weight: bold;
+
+}
+
+.artist-name {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.control-icons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    /* 아이콘과 프로그레스 바 사이의 간격 추가 */
+}
+
+.control-icon {
+    font-size: 2em;
+    /* 아이콘 크기 조절 */
+    margin: 0 10px;
+}
+
+
+.mylist-list-group-item {
     border-width: 2px;
     border-color: #dee2e6;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);

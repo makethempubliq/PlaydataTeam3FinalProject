@@ -101,7 +101,7 @@ h6 {
 }
 
 p {
-  color: var(--p-color);
+  /* color: var(--p-color); */
   font-size: var(--p-font-size);
   font-weight: var(--font-weight-light);
 }
@@ -254,7 +254,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 480px;
+  min-height: 400px;
   position: relative;
 }
 
@@ -299,7 +299,20 @@ main {
 }
 
 .navbar-brand span {
-  font-family: var(--title-font-family);
+  /* font-family: var(--title-font-family); */
+  font-family: "Archive Black", sans-serif;
+  letter-spacing: -1.5px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.navbar-brand .logo-dash {
+  font-family: "Archive Black", sans-serif;
+  color: blue;
+  /* letter-spacing: -1.5px; */
+  font-style: italic;
+  font-weight: bold;
+  margin-right: 5px;
 }
 
 .navbar-nav .nav-link {

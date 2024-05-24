@@ -58,3 +58,40 @@
     text-align: right;
     margin-left: auto;
 }
+
+.playlist-form button[type="submit"] {
+    background: var(--custom-btn-bg-color);
+    border: none;
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    font-family: var(--title-font-family);
+    font-size: 1em;
+    transition: all 0.3s;
+    margin-bottom: 0;
+}
+
+.icon2 {
+    font-size: 1.6em;
+    margin-right: 12px;
+}
+
+.playlist-form button[type="submit"]:hover,
+.playlist-form button[type="submit"]:focus {
+    background: var(--custom-btn-bg-hover-color);
+    border-color: transparent;
+}
+
+#playlist-name {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+#playlist-name:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

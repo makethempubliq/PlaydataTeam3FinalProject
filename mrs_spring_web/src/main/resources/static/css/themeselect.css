@@ -1,0 +1,46 @@
+.nav-item {
+    list-style-type: none;
+}
+
+.service-name {
+    font-family: "Archivo Black", sans-serif;
+    /* font-weight: 400; */
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.dash {
+    letter-spacing: 10px;
+    font-weight: bold;
+    color: blue;
+}
+
+.dropdown-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.dropdown-toggle-wrapper i {
+    margin-right: 10px;
+    font-size: 2em;
+}
+
+.mb-5 {
+    margin-top: 100px;
+}
+
+.row {
+    margin-bottom: 40px;
+}
+
+#themeinput {
+    width: 80%;
+    margin: auto;
+}
+
+p {
+    font-size: smaller;
+    margin-top: 10px;
+}

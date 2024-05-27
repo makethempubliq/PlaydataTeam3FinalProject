@@ -29,7 +29,8 @@
 <body>
     <div id="player-bar" class="player-bar">
         <div class="player-column left-column">
-            <img id="albumCover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDX3b62OofJa5NUdvnlqXld1ImeAsJ9lGdYA&s"
+            <img id="albumCover"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQsAAACUCAMAAACzzPxCAAAAA1BMVEV/f3+QyhsjAAAAPUlEQVR4nO3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDaa8AABMHvFFgAAAABJRU5ErkJggg=="
                 alt="Album Cover" class="album-cover">
             <div class="track-info">
                 <p id="trackTitle" class="track-title">트랙 제목</p>
@@ -61,8 +62,7 @@
                 <li class="list-group-item player-list-group-item">
                     <div class="d-flex align-items-center">
                         {{#album.images.0}}
-                        <img src="{{url}}"
-                            alt="앨범 커버" class="album-cover-list mr-3">
+                        <img src="{{url}}" alt="앨범 커버" class="album-cover-list mr-3">
                         {{/album.images.0}}
                         <div>
                             <p>{{name}}</p>

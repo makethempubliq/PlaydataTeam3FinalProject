@@ -254,7 +254,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 400px;
+  min-height: 200px;
   position: relative;
 }
 
@@ -1024,13 +1024,17 @@ main {
   background-position: center;
   margin-top: -80px;
   padding-top: 100px;
-  padding-bottom: 150px;
+  padding-bottom: 120px;
 }
 
 .site-footer>.container {
   position: relative;
-  top: 50px;
+  font-size: small;
+  top: 20px;
   padding-top: 100px;
+  text-align: center;
+  /* 텍스트 가운데 정렬 */
+}
 }
 
 .site-footer-title,

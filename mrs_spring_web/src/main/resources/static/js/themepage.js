@@ -47,8 +47,8 @@ function showSubTopics(mainCategory) {
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("themesubmit").addEventListener("click", function () {
         const inputtext = document.getElementById("themeinput").value;
-        const hour = document.getElementById("hour").value;
-        const minute = document.getElementById("minute").value;
+        const hour = parseInt(document.getElementById("hour").value);
+        const minute = parseInt(document.getElementById("minute").value);
     
         const totalduration = hour * 60 + minute;
     
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
             totalDuration: totalduration
         };
     
-        fetch("/api/v1/flask/themeselect", {
+        fetch("http://localhost:5000/api/v1/flask/themeselect", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
     
             // Send the second POST request to get recommended tracks
-            return fetch("/api/v1/flask/gettracks", {
+            return fetch("http://localhost:5000/api/v1/flask/gettracks", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

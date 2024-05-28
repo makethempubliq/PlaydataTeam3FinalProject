@@ -50,6 +50,19 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         });
 
         console.log('All tasks completed.');
+        
+        setInterval(async () => {
+            player.getCurrentState().then(state => {
+                if (!state) {
+                  console.error('User is not playing music through the Web Playback SDK');
+                  return;
+                }
+                var position = state.position;
+                var duration = state.duration;
+                document.getElementById('position').textContent = msToMinutesSeconds(position);
+                document.getElementById('progressbar').value = position/duration*100;
+            });
+        }, 50);
     });
     // Not Ready
     player.addListener('not_ready', ({ device_id }) => {
@@ -83,18 +96,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         document.getElementById('duration').textContent = msToMinutesSeconds(duration);
     });
 
-    setInterval(async () => {
-        player.getCurrentState().then(state => {
-            if (!state) {
-              console.error('User is not playing music through the Web Playback SDK');
-              return;
-            }
-            var position = state.position;
-            var duration = state.duration;
-            document.getElementById('position').textContent = msToMinutesSeconds(position);
-            document.getElementById('progressbar').value = position/duration*100;
-        });
-    }, 50);
+    
 
     document.getElementById('playIcon2').onclick = function () {
         player.togglePlay();

@@ -92,10 +92,11 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('Recommended Tracks:', trackData);
             const tokenizedTheme = trackData.tokenizedTheme;
             const trackUris = trackData.trackUris;
+            const entokenizedTheme = trackData.entokenizedTheme
             // Create a URL with query parameters
             const queryParams = new URLSearchParams();
             queryParams.append('tokenizedTheme', JSON.stringify(tokenizedTheme));
-
+            queryParams.append('entokenizedTheme', JSON.stringify(entokenizedTheme));
         // Add recommended tracks to query parameters
             queryParams.append('recommendedtracks', JSON.stringify(trackUris));
             // Redirect to /playlist with the track data as query parameters

@@ -1,6 +1,4 @@
 .vscode/settings.json
-
-.vscode/settings.json
 mrs_flask_server/resources/model/
 mrs_flask_server/resources/scores/
 mrs_flask_server/resources/static/data/song_meta.json

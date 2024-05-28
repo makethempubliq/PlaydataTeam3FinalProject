@@ -640,11 +640,10 @@ progress {
 }
 
 .img-fluid {
-    max-width: 100%;
-    height: auto
+    height: max-content;
 }
 
-.img-thumbnail {
+s .img-thumbnail {
     padding: .25rem;
     background-color: #fff;
     border: 1px solid var(--bs-border-color);

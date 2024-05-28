@@ -1,3 +1,36 @@
+.nav-item {
+    list-style-type: none;
+}
+
+.service-name {
+    font-family: "Archivo Black", sans-serif;
+    /* font-weight: 400; */
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.dash {
+    letter-spacing: 10px;
+    font-weight: bold;
+    color: blue;
+}
+
+.dropdown-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.dropdown-toggle-wrapper i {
+    margin-right: 10px;
+    font-size: 2em;
+}
+
+.row {
+    margin-bottom: 70px;
+}
+
 .album-cover {
     width: 70px;
     height: 70px;

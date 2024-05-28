@@ -90,6 +90,10 @@
     margin: 0 15px;
 }
 
+#position {
+    margin-right: 25px;
+}
+
 .progress-container {
     display: flex;
     align-items: center;
@@ -100,7 +104,7 @@
 .time-display {
     margin: 0 10px;
     font-size: 0.8em;
-    ;
+    width: 10px;
 }
 
 .progress-bar {

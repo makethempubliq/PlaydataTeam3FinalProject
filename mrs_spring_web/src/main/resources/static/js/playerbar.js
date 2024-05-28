@@ -1,13 +1,15 @@
-document.getElementById('playlist-icon').addEventListener('click', function () {
-    document.getElementById('playlist-sidebar').classList.toggle('show');
-});
+// 전역 변수로 player를 선언합니다.
+let player;
 
+// Spotify Web Playback SDK가 준비되면 호출되는 함수
 window.onSpotifyWebPlaybackSDKReady = () => {
     var tracklistInput = document.getElementById("tracklist");
     var tracklistValue = tracklistInput.value;
     const token = document.getElementById("accesstoken").value;
-    console.log("accesstoken is " + token)
-    const player = new Spotify.Player({
+    console.log("accesstoken is " + token);
+
+    // player 변수에 값을 할당합니다.
+    player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); },
         volume: 0.5
@@ -85,7 +87,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         position,
         duration,
         track_window: { current_track }
-      }) => {
+    }) => {
         console.log('Currently Playing', current_track);
         document.getElementById('albumCover').src = current_track.album.images[0].url;
         document.getElementById('trackTitle').textContent = current_track.name;
@@ -109,59 +111,18 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             heartIcon.classList.add("bi-play-circle-fill");
         }
     };
-    
-    document.getElementById('prevIcon').onclick = function() {
+
+    document.getElementById('prevIcon').onclick = function () {
         player.previousTrack();
-    
+
     };
-    
-    document.getElementById('nextIcon').onclick = function() {
+
+    document.getElementById('nextIcon').onclick = function () {
         player.nextTrack();
     };
-    
+
     player.connect();
 }
-// HTML 요소들을 가져옵니다.
-// const playlistItems = document.querySelectorAll('.playlist-sidebar .list-group-item');
-// const albumArt = document.querySelector('.player-bar .album-cover');
-// const trackTitleElement = document.querySelector('.player-bar .track-title');
-// const artistNameElement = document.querySelector('.player-bar .artist-name');
-// const controlIcons = document.querySelectorAll('.control-icons .control-icon');
-
-// let currentIndex = 0;
-
-// // 초기화합니다.
-// updatePlayerInfo(currentIndex);
-
-// // 플레이어 정보를 업데이트합니다.
-// function updatePlayerInfo(index) {
-//     const selectedPlaylistItem = playlistItems[index];
-//     const trackTitle = selectedPlaylistItem.querySelector('p:nth-child(1)').textContent;
-//     const artistName = selectedPlaylistItem.querySelector('p:nth-child(2)').textContent;
-//     const albumArtSrc = selectedPlaylistItem.querySelector('img').src;
-
-//     trackTitleElement.textContent = trackTitle;
-//     artistNameElement.textContent = artistName;
-//     albumArt.src = albumArtSrc;
-// }
-
-// // 플레이어 아이콘에 클릭 이벤트를 추가합니다.
-// controlIcons[2].addEventListener('click', function () {
-//     currentIndex = (currentIndex + 1) % playlistItems.length;
-//     updatePlayerInfo(currentIndex);
-// });
-
-// controlIcons[0].addEventListener('click', function () {
-//     currentIndex = currentIndex > 0 ? currentIndex - 1 : playlistItems.length - 1;
-//     updatePlayerInfo(currentIndex);
-// });
-
-// playlistItems.forEach((item, index) => {
-//     item.addEventListener('click', function () {
-//         currentIndex = index;
-//         updatePlayerInfo(currentIndex);
-//     });
-// });
 
 // "close-player-bar" 아이콘을 가져옵니다.
 const closeButton = document.getElementById('close-player-bar');
@@ -171,7 +132,23 @@ closeButton.addEventListener('click', function () {
     // player bar와 side bar를 감춥니다.
     document.getElementById('player-bar').style.display = 'none';
     document.getElementById('playlist-sidebar').style.display = 'none';
+
+    // 재생 중인 음악을 일시정지합니다.
+    player.pause();
+
+    // 재생 중인 음악과 플레이리스트를 모두 초기화합니다.
+    document.getElementById('albumCover').src = '';
+    document.getElementById('trackTitle').textContent = '';
+    document.getElementById('artistName').textContent = '';
+    document.getElementById('position').textContent = '0:00';
+    document.getElementById('duration').textContent = '0:00';
+    document.getElementById('progressbar').value = 0;
+
+    // 재생목록을 초기화합니다.
+    document.getElementById("tracklist").value = '';
+
 });
+
 
 function msToMinutesSeconds(ms) {
     // 1초는 1000 밀리초
@@ -189,13 +166,25 @@ function msToMinutesSeconds(ms) {
     return `${minutes}:${formattedSeconds}`;
 }
 
+document.getElementById('playIcon2').onclick = async function () {
+    // 트랙리스트를 다시 불러옵니다.
+    var tracklistInput = document.getElementById("tracklist");
+    var tracklistValue = tracklistInput.value;
+
+    // 음악 설정
+    await fetch('/api/v1/setmusic', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tracklistValue)
+    });
+
+    // 트랙리스트를 설정한 후 플레이어를 다시 연결합니다.
+    player.connect();
+};
 
 // tracklistValue = tracklistValue.substring(1, tracklistValue.length - 1);
 // tracklistInput.value = tracklistValue;
-
-    
-
-
-
 
 

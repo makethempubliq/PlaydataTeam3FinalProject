@@ -104,7 +104,7 @@ function loadScript(src) {
 }
 
 document.getElementById("playIcon").addEventListener("click", function () {
-    fetch('/playerbar?trackdata='+tracklistValue)
+    fetch('/playerbar?trackdata=' + tracklistValue)
         .then(response => response.text())
         .then(html => {
             document.body.insertAdjacentHTML('beforeend', html);
@@ -119,7 +119,7 @@ document.getElementById("playIcon").addEventListener("click", function () {
             // HTML에 연결된 JavaScript 파일을 가져와 실행합니다.
             const scriptElement = document.createElement('script');
             const spotifyplayer = document.createElement('script');
-            
+
             loadScript('../static/js/playerbar.js')
                 .then(() => loadScript('https://sdk.scdn.co/spotify-player.js'))
                 .then(() => {

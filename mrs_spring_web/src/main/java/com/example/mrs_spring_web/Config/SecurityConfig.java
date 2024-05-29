@@ -37,7 +37,7 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable);
     http
       .authorizeHttpRequests(authorize -> authorize
-        .requestMatchers("/ue/**").authenticated() // 인증이되면 접근 가능 
+        .requestMatchers("/**").authenticated() // 인증이되면 접근 가능 
         .requestMatchers("/manager/**").hasAnyAuthority("ADMIN", "MANAGER") // 인증&인가가 되면 접근 가능 
         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN") // 인증&인가가 되면 접근 가능
         .anyRequest().permitAll() // 누구나 접근 가능 

@@ -47,17 +47,6 @@ public class UserController {
         return "main";
     }
 
-    @GetMapping("/musicplayer")
-    public String musicplayer(@RequestParam("id") String playlistId, Authentication authentication,
-            @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception {
-        List<String> playlistTracks = spotifyService.getTracklistByPlaylist(userDetailsObj.getUsername(), playlistId);
-        String accesstoken = userService.getAccesstoken(userDetailsObj.getUsername());
-
-        model.addAttribute("accesstoken", accesstoken);
-        model.addAttribute("tracklist", playlistTracks);
-        model.addAttribute("playlistTracks", playlistTracks.toString());
-        return "musicplayer";
-    }
 
     @GetMapping("/playlist")
     public String showplaylist(@RequestParam(value = "id", required = false) String playlistId,
@@ -101,6 +90,7 @@ public class UserController {
         for (String track : tracksArray) {
             tracksList.add(track);
         }
+
         log.info("show playerbar : trackdata : " + trackdata + accesstoken);
         model.addAttribute("accesstoken", accesstoken);
         model.addAttribute("tracklist", tracksList);
@@ -110,8 +100,10 @@ public class UserController {
 
     @GetMapping("/makeplaylist")
     public String makeplaylist(Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj,
-            Model model) {
+            Model model) throws Exception{
         log.info("[UserController] makeplaylist start!!");
+        User currentUser = spotifyService.getUserProfile(userDetailsObj.getUsername());
+        model.addAttribute("username", currentUser.getDisplayName());
         return "themeselect";
     }
 }

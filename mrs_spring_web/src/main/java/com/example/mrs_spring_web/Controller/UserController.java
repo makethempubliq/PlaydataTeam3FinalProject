@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mrs_spring_web.Model.DTO.PlaylistDTO;
+import com.example.mrs_spring_web.Service.PlaylistService;
 import com.example.mrs_spring_web.Service.SpotifyService;
 import com.example.mrs_spring_web.Service.UserService;
 import com.google.gson.Gson;
@@ -29,6 +31,9 @@ public class UserController {
 
     @Autowired
     public UserService userService;
+
+    @Autowired
+    public PlaylistService playlistService;
 
     @GetMapping("/")
     public String index() {
@@ -106,4 +111,14 @@ public class UserController {
         model.addAttribute("username", currentUser.getDisplayName());
         return "themeselect";
     }
+
+    @GetMapping("/mylists")
+    public String showUserLikePlaylist(Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception{
+        List<PlaylistDTO> playlists = playlistService.getSavedPlaylists(userDetailsObj.getUsername());
+        User currentUser = spotifyService.getUserProfile(userDetailsObj.getUsername());
+        model.addAttribute("username", currentUser.getDisplayName());
+        model.addAttribute("playlists", playlists);
+        return "mylist";
+    }
+    
 }

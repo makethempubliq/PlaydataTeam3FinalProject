@@ -1,5 +1,23 @@
 document.getElementById("heartIcon").addEventListener("click", function () {
     var heartIcon = document.getElementById("heartIcon");
+    const tracklist = document.getElementById("tracklist").value;
+    const themes = document.getElementById("themes").value;
+    const totalDuration = document.getElementById("totalDuration").textContent;
+    const playlistTrackCount = document.querySelectorAll('.custom-list-group-item').length;
+    const data = {
+        "playlistTracks" : tracklist,
+        "playlistTracksCount" : playlistTrackCount,
+        "playlistDuration" : totalDuration,
+        "playlistThemes" : themes
+    };
+    fetch("/api/v1/likeplaylist", {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+   })
+   .then(alert("플레이리스트가 만들어졌습니다!"));
     if (heartIcon.classList.contains("bi-heart")) {
         heartIcon.classList.remove("bi-heart");
         heartIcon.classList.add("bi-heart-fill");
@@ -62,7 +80,6 @@ function displayTotalSongs() {
     var totalSongs = document.querySelectorAll('.custom-list-group-item').length;
     document.getElementById('totalSongs').textContent = '총 ' + totalSongs + '곡,';
 }
-
 
 
 document.getElementById("playlist-form").addEventListener("submit", function (event) {

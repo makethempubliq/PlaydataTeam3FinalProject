@@ -121,6 +121,7 @@ https://templatemo.com/tm-584-pod-talk
                                     </label>
                                     <input type="text" id="playlist-name" name="playlistName">
                                     <input type="hidden" id="tracklist" name="tracklist" value="{{tracklist}}">
+                                    <input type="hidden" id="themes" name="themes" value="{{themes}}">
                                     <button type="submit">save</button>
                                 </form>
                             </div>
@@ -135,14 +136,14 @@ https://templatemo.com/tm-584-pod-talk
                                         {{/album.images.0}}
                                         <div>
                                             <strong>{{name}}</strong><br>
-                                            <span id="artists{{name}}"></span>
+                                            <span id="artists{{id}}"></span>
                                         </div>
-                                        <span id="duration{{name}}{{durationMs}}" class="duration ml-auto"></span>
+                                        <span id="duration{{id}}{{durationMs}}" class="duration ml-auto"></span>
                                         <script>
                                             var durationtime = msToMinutesSeconds("{{durationMs}}");
-                                            document.getElementById('duration' + "{{name}}" + "{{durationMs}}").textContent = durationtime;
+                                            document.getElementById('duration' + "{{id}}" + "{{durationMs}}").textContent = durationtime;
                                             var artists = "{{#artists}}{{name}}, {{/artists}}".slice(0, -2); // 마지막 쉼표와 공백 제거
-                                            document.getElementById('artists' + "{{name}}").textContent = artists;
+                                            document.getElementById('artists' + "{{id}}").textContent = artists;
                                         </script>
                                     </div>
                                 </li>

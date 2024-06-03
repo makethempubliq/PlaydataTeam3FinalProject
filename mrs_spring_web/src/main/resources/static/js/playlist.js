@@ -8,12 +8,12 @@ document.getElementById("heartIcon").addEventListener("click", function () {
     const playlistCoverSrc = document.getElementById("playlistcover").src;
 
     const data = {
-        "playlistTracks" : tracklist,
-        "playlistTracksCount" : playlistTrackCount,
-        "playlistDuration" : totalDuration,
-        "playlistThemes" : themes,
-        "playlistCoverSrc" : playlistCoverSrc,
-        "playlistEnThemes" : enthemes
+        "playlistTracks": tracklist,
+        "playlistTracksCount": playlistTrackCount,
+        "playlistDuration": totalDuration,
+        "playlistThemes": themes,
+        "playlistCoverSrc": playlistCoverSrc,
+        "playlistEnThemes": enthemes
     };
     fetch("/api/v1/likeplaylist", {
         method: 'post',
@@ -21,15 +21,8 @@ document.getElementById("heartIcon").addEventListener("click", function () {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-   })
-   .then(alert("플레이리스트가 만들어졌습니다!"));
-    if (heartIcon.classList.contains("bi-heart")) {
-        heartIcon.classList.remove("bi-heart");
-        heartIcon.classList.add("bi-heart-fill");
-    } else {
-        heartIcon.classList.remove("bi-heart-fill");
-        heartIcon.classList.add("bi-heart");
-    }
+    })
+        .then(alert("플레이리스트가 만들어졌습니다!"));
 });
 
 
@@ -59,7 +52,16 @@ document.addEventListener("DOMContentLoaded", function () {
 // 시간을 초 단위로 변환하는 함수
 function timeToSeconds(time) {
     var parts = time.split(':');
-    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+    if (parts.length !== 3) {
+        return 0; // 예외 처리: 유효하지 않은 형식의 시간
+    }
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    var seconds = parseInt(parts[2]);
+    if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+        return 0; // 예외 처리: 유효하지 않은 숫자
+    }
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
 // 각 요소의 시간을 가져와 총 시간을 계산하는 함수
@@ -67,7 +69,21 @@ function calculateTotalDuration() {
     var durations = document.querySelectorAll('.duration');
     var totalSeconds = 0;
     durations.forEach(function (duration) {
-        totalSeconds += timeToSeconds(duration.innerText);
+        var timeParts = duration.innerText.split(':');
+        if (timeParts.length === 2) {
+            var minutes = parseInt(timeParts[0]);
+            var seconds = parseInt(timeParts[1]);
+            if (!isNaN(minutes) && !isNaN(seconds)) {
+                totalSeconds += minutes * 60 + seconds;
+            }
+        } else if (timeParts.length === 3) {
+            var hours = parseInt(timeParts[0]);
+            var minutes = parseInt(timeParts[1]);
+            var seconds = parseInt(timeParts[2]);
+            if (!isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
+                totalSeconds += hours * 3600 + minutes * 60 + seconds;
+            }
+        }
     });
     return totalSeconds;
 }
@@ -75,10 +91,17 @@ function calculateTotalDuration() {
 // 총 시간을 표시하는 함수
 function displayTotalDuration() {
     var totalSeconds = calculateTotalDuration();
-    var minutes = Math.floor(totalSeconds / 60);
+    var hours = Math.floor(totalSeconds / 3600);
+    var minutes = Math.floor((totalSeconds % 3600) / 60);
     var seconds = totalSeconds % 60;
-    document.getElementById('totalDuration').textContent = minutes + '분' + ' ' + seconds + '초';
+
+    if (hours > 0) {
+        document.getElementById('totalDuration').textContent = hours + '시간 ' + minutes + '분';
+    } else {
+        document.getElementById('totalDuration').textContent = minutes + '분 ' + seconds + '초';
+    }
 }
+
 
 // 총 곡 수를 표시하는 함수
 function displayTotalSongs() {

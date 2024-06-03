@@ -82,6 +82,10 @@
     flex-grow: 1;
 }
 
+.list-group-item {
+    cursor: pointer;
+}
+
 .icon {
     text-align: right;
     margin-left: auto;
@@ -96,8 +100,9 @@
     height: 25px;
     background-color: #208877;
     border-color: #208877;
-    font-size: 12px;
-    margin-top: 6px;
+    font-size: 13px;
+    font-weight: bold;
     margin-right: 8px;
+    margin-bottom: 6px;
     cursor: default;
 }

@@ -95,7 +95,8 @@ https://templatemo.com/tm-584-pod-talk
                         <div class="container">
                             <ul class="list-group mt-3">
                                 {{#playlists}}
-                                <li class="list-group-item mylist-list-group-item">
+                                <li class="list-group-item mylist-list-group-item"
+                                    onclick="showplaylistpage('{{playlistTracks}}', '{{playlistThemes}}', '{{playlistEnThemes}}', '{{playlistCoverSrc}}')">
                                     <div class="d-flex align-items-center">
                                         <img src="{{playlistCoverSrc}}" alt="앨범 커버" class="album-cover mr-3">
                                         <div>
@@ -104,17 +105,17 @@ https://templatemo.com/tm-584-pod-talk
                                                 <button id="themeButton" class="btn btn-primary ml-3">{{.}}</button>
                                                 {{/parsedThemes}}
                                             </div>
-                                            <div><span>{{playlistTracksCount}}곡 {{playlistDuration}}</span></div>
+                                            <div><span>{{playlistTracksCount}}곡, {{playlistDuration}}</span></div>
                                             <input id="playlist{{playlistId}}" type="hidden" value="{{playlistTracks}}">
                                         </div>
                                         <div class="icon d-inline-block" style="margin-top:5px; margin-bottom: 10px;">
-                                            <i id="playIcon" class="bi bi-play-circle clickable"
+                                            <!-- <i id="playIcon" class="bi bi-play-circle clickable"
                                                 style="font-size: 1.3em; margin-right: 6px;" data-toggle="tooltip"
                                                 title="플레이리스트 재생"
                                                 onclick="showplaylistpage('{{playlistTracks}}', '{{playlistThemes}}', '{{playlistEnThemes}}','{{playlistCoverSrc}}')"></i>
                                             <i id="downloadIcon" class="bi bi-download clickable"
                                                 style="font-size: 1.3em; margin-right: 6px;" data-toggle="tooltip"
-                                                title="스포티파이에 플레이리스트 저장"></i>
+                                                title="스포티파이에 플레이리스트 저장"></i> -->
                                             <i id="deleteIcon" class="bi bi-trash clickable" style="font-size: 1.3em;"
                                                 data-toggle="tooltip" title="플레이리스트 삭제"
                                                 onclick="confirmDelete('{{playlistId}}')"></i>

@@ -1,3 +1,4 @@
+
 from TagExtractor import extract_keywords, kor_to_en
 from script import main_recommend
 from flask import Flask, request, jsonify
@@ -11,12 +12,14 @@ CORS(app)
 logging.basicConfig(level=logging.INFO)
 # SBERT 모델 로드
 
+
 predefined_embeddings = {}
 model = None
 
 def load_model():
     global predefined_embeddings
     global model
+    
     model = SentenceTransformer('snunlp/KR-SBERT-V40K-klueNLI-augSTS')
     with open(r"resources\static\data\taglist.csv", "r") as file:
         reader = csv.reader(file)

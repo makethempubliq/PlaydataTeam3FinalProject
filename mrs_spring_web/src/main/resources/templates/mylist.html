@@ -44,7 +44,7 @@ https://templatemo.com/tm-584-pod-talk
 
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand me-lg-auto me-0" href="main.html">
+                <a class="navbar-brand me-lg-auto me-0" href="/user/main.html">
                     <span class="logo-text"><span class="logo-dash">//</span>RhythmiQ</span>
                 </a>
 
@@ -57,7 +57,7 @@ https://templatemo.com/tm-584-pod-talk
                         </a>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="mylist.html">저장된 플레이리스트</a></li>
+                        <li><a class="dropdown-item" href="/user/mylist.html">저장된 플레이리스트</a></li>
                         <li><a class="dropdown-item" href="#">로그아웃</a></li>
                         <li><a class="dropdown-item" href="#">회원탈퇴</a></li>
                     </ul>
@@ -97,8 +97,7 @@ https://templatemo.com/tm-584-pod-talk
                                 {{#playlists}}
                                 <li class="list-group-item mylist-list-group-item">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{playlistCoverSrc}}"
-                                            alt="앨범 커버" class="album-cover mr-3">
+                                        <img src="{{playlistCoverSrc}}" alt="앨범 커버" class="album-cover mr-3">
                                         <div>
                                             <div>
                                                 {{#parsedThemes}}
@@ -106,17 +105,19 @@ https://templatemo.com/tm-584-pod-talk
                                                 {{/parsedThemes}}
                                             </div>
                                             <div><span>{{playlistTracksCount}}곡 {{playlistDuration}}</span></div>
-                                            <input id="playlist{{playlistId}}" type="hidden" value = "{{playlistTracks}}">
+                                            <input id="playlist{{playlistId}}" type="hidden" value="{{playlistTracks}}">
                                         </div>
                                         <div class="icon d-inline-block" style="margin-top:5px; margin-bottom: 10px;">
                                             <i id="playIcon" class="bi bi-play-circle clickable"
                                                 style="font-size: 1.3em; margin-right: 6px;" data-toggle="tooltip"
-                                                title="플레이리스트 재생" onclick="showplaylistpage('{{playlistTracks}}', '{{playlistThemes}}', '{{playlistEnThemes}}','{{playlistCoverSrc}}')"></i>
+                                                title="플레이리스트 재생"
+                                                onclick="showplaylistpage('{{playlistTracks}}', '{{playlistThemes}}', '{{playlistEnThemes}}','{{playlistCoverSrc}}')"></i>
                                             <i id="downloadIcon" class="bi bi-download clickable"
                                                 style="font-size: 1.3em; margin-right: 6px;" data-toggle="tooltip"
                                                 title="스포티파이에 플레이리스트 저장"></i>
                                             <i id="deleteIcon" class="bi bi-trash clickable" style="font-size: 1.3em;"
-                                                data-toggle="tooltip" title="플레이리스트 삭제" onclick="confirmDelete('{{playlistId}}')"></i>
+                                                data-toggle="tooltip" title="플레이리스트 삭제"
+                                                onclick="confirmDelete('{{playlistId}}')"></i>
                                         </div>
                                     </div>
                                 </li>

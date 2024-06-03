@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Add recommended tracks to query parameters
                 queryParams.append('recommendedtracks', JSON.stringify(trackUris));
                 // Redirect to /playlist with the track data as query parameters
-                window.location.href = `/playlist?${queryParams.toString()}`;
+                window.location.href = `/user/playlist?${queryParams.toString()}`;
             })
             .catch((error) => {
                 console.error('Error:', error);

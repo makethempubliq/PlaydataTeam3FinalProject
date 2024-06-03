@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mrs_spring_web.Model.DTO.PlaylistDTO;
@@ -26,6 +27,7 @@ import se.michaelthelin.spotify.model_objects.specification.User;
 
 @Slf4j
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -37,10 +39,6 @@ public class UserController {
     @Autowired
     public PlaylistService playlistService;
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
 
     @GetMapping("/main")
     public String main(Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj, Model model)

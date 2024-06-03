@@ -30,4 +30,6 @@ public class PlaylistEntity {
     private String playlistDuration;
     private String playlistUserId;
     private String playlistThemes;
+    private String playlistEnThemes;
+    private String playlistCoverSrc;
 }

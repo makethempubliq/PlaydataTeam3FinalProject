@@ -85,24 +85,26 @@ https://templatemo.com/tm-584-pod-talk
                     <div class="col-lg-8 col-12 mx-auto">
                         <div class="playlistimage">
                             {{#playlistArt}}
-                            <img src="{{playlistArt}}" alt="플레이리스트 이미지" class="mr-3 playlist-image">
+                            <img id="playlistcover" src="{{playlistArt}}" alt="플레이리스트 이미지" class="mr-3 playlist-image">
                             {{/playlistArt}}
                             {{^playlistArt}}
-                            <img id="diffuser" src="" alt="플레이리스트 이미지" class="mr-3 playlist-image">
+                            <img id="playlistcover" src="" alt="플레이리스트 이미지" class="mr-3 playlist-image">
                             <script>
-                                getPlaylistArt({ inputs: "{{themes}}" }).then((blob) => {
+                                getPlaylistArt({ inputs: "{{enthemes}}" }).then((blob) => {
                                     if (blob) {
                                         const url = URL.createObjectURL(blob);
-                                        const img = document.getElementById("diffuser");
+                                        const img = document.getElementById("playlistcover");
                                         img.src = url;
                                     }
                                 });
                             </script>
+                            
                             {{/playlistArt}}
                             <div class="icon" style="margin-top:20px;">
                                 <h4 class="d-inline-block mr-3" style="margin-right: 10px;">Theme : </h4>
-                                <button id="themeButton" class="btn btn-primary ml-3">theme1</button>
-                                <button id="themeButton" class="btn btn-primary ml-3">theme2</button>
+                                {{#themes}}
+                                <button id="themeButton" class="btn btn-primary ml-3">{{.}}</button>
+                                {{/themes}}
                             </div>
                             <div class="ml-auto small" style="margin-bottom: 5px;">
                                 <span id="totalSongs"></span>
@@ -121,7 +123,9 @@ https://templatemo.com/tm-584-pod-talk
                                     </label>
                                     <input type="text" id="playlist-name" name="playlistName">
                                     <input type="hidden" id="tracklist" name="tracklist" value="{{tracklist}}">
-                                    <input type="hidden" id="themes" name="themes" value="{{themes}}">
+                                    <input type="hidden" id="tracklist2" name="tracklist" value="{{tracklist2}}">
+                                    <input type="hidden" id="themes" name="themes" value="{{stringThemes}}">
+                                    <input type="hidden" id="enthemes" name="enthemes" value="{{stringEnThemes}}">
                                     <button type="submit">save</button>
                                 </form>
                             </div>

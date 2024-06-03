@@ -1,14 +1,19 @@
 document.getElementById("heartIcon").addEventListener("click", function () {
     var heartIcon = document.getElementById("heartIcon");
-    const tracklist = document.getElementById("tracklist").value;
+    const tracklist = document.getElementById("tracklist2").value;
     const themes = document.getElementById("themes").value;
+    const enthemes = document.getElementById("enthemes").value;
     const totalDuration = document.getElementById("totalDuration").textContent;
     const playlistTrackCount = document.querySelectorAll('.custom-list-group-item').length;
+    const playlistCoverSrc = document.getElementById("playlistcover").src;
+
     const data = {
         "playlistTracks" : tracklist,
         "playlistTracksCount" : playlistTrackCount,
         "playlistDuration" : totalDuration,
-        "playlistThemes" : themes
+        "playlistThemes" : themes,
+        "playlistCoverSrc" : playlistCoverSrc,
+        "playlistEnThemes" : enthemes
     };
     fetch("/api/v1/likeplaylist", {
         method: 'post',

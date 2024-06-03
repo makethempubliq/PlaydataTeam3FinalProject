@@ -27,6 +27,8 @@ public class PlaylistService {
             playlistDTO.setPlaylistTracks(playlistEntity.getPlaylistTracks());
             playlistDTO.setPlaylistUserId(playlistEntity.getPlaylistUserId());
             playlistDTO.setPlaylistTracksCount(playlistEntity.getPlaylistTracksCount());
+            playlistDTO.setPlaylistCoverSrc(playlistEntity.getPlaylistCoverSrc());
+            playlistDTO.setPlaylistEnThemes(playlistEntity.getPlaylistEnThemes());
             dtos.add(playlistDTO);
         }
         return dtos;
@@ -39,6 +41,12 @@ public class PlaylistService {
         playlistEntity.setPlaylistTracks(playlistDTO.getPlaylistTracks());
         playlistEntity.setPlaylistUserId(playlistDTO.getPlaylistUserId());
         playlistEntity.setPlaylistTracksCount(playlistDTO.getPlaylistTracksCount());
+        playlistEntity.setPlaylistCoverSrc(playlistDTO.getPlaylistCoverSrc());
+        playlistEntity.setPlaylistEnThemes(playlistDTO.getPlaylistEnThemes());
         playlistRepository.save(playlistEntity);
+    }
+
+    public void deletePlaylist(Long playlistId) {
+        playlistRepository.deleteById(playlistId);
     }
 }

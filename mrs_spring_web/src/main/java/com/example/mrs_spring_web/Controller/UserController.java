@@ -17,6 +17,8 @@ import com.example.mrs_spring_web.Service.PlaylistService;
 import com.example.mrs_spring_web.Service.SpotifyService;
 import com.example.mrs_spring_web.Service.UserService;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +58,10 @@ public class UserController {
     @GetMapping("/playlist")
     public String showplaylist(@RequestParam(value = "id", required = false) String playlistId,
             @RequestParam(value = "recommendedtracks", required = false) String recommendedtracks,
-            @RequestParam(value = "tokenizedTheme", required = false) String themes, Authentication authentication,
+            @RequestParam(value = "tokenizedTheme", required = false) String themes,
+            @RequestParam(value = "entokenizedTheme", required = false) String enthemes,
+            @RequestParam(value = "playlistCoverSrc", required = false) String src,
+            Authentication authentication,
             @AuthenticationPrincipal UserDetails userDetailsObj, Model model) throws Exception {
 
         String accesstoken = userService.getAccesstoken(userDetailsObj.getUsername());
@@ -65,14 +70,39 @@ public class UserController {
             model.addAttribute("playlistArt",
                     spotifyService.getPlaylistArt(userDetailsObj.getUsername(), playlistId).getUrl());
             model.addAttribute("tracklist", Tracks);
+            Gson gson = new Gson();
+
+        // List를 JsonArray로 변환
+            JsonElement trackElement = gson.toJsonTree(Tracks);
+            JsonArray tracksJson = trackElement.getAsJsonArray();
+            List<String> theme = new ArrayList<>();
+            theme.add("인기 차트");
+            JsonElement themeElement = gson.toJsonTree(theme);
+            JsonArray themesJson = themeElement.getAsJsonArray();
+            List<String> entheme = new ArrayList<>();
+            entheme.add("Top Tracks");
+            JsonElement enthemeElement = gson.toJsonTree(entheme);
+            JsonArray enthemesJson = enthemeElement.getAsJsonArray();
+            model.addAttribute("tracklist2", tracksJson);
+            model.addAttribute("themes", "인기 차트");
+            model.addAttribute("stringThemes", themesJson);
+            model.addAttribute("stringEnThemes", enthemesJson);
             model.addAttribute("trackDataList", spotifyService.getTracksdata(userDetailsObj.getUsername(), Tracks));
         } else {
             List<String> Tracks = new Gson().fromJson(recommendedtracks, new TypeToken<List<String>>() {
             }.getType());
             model.addAttribute("tracklist", Tracks);
+            model.addAttribute("tracklist2", recommendedtracks);
             model.addAttribute("trackDataList", spotifyService.getTracksdata(userDetailsObj.getUsername(), Tracks));
             model.addAttribute("themes", new Gson().fromJson(themes, new TypeToken<List<String>>() {
             }.getType()));
+            model.addAttribute("enthemes", new Gson().fromJson(enthemes, new TypeToken<List<String>>() {
+            }.getType()));
+            model.addAttribute("stringThemes", themes);
+            model.addAttribute("stringEnThemes", enthemes);
+            if (src != null) {
+                model.addAttribute("playlistArt", src);
+            }
         }
         model.addAttribute("accesstoken", accesstoken);
 
@@ -117,6 +147,18 @@ public class UserController {
         List<PlaylistDTO> playlists = playlistService.getSavedPlaylists(userDetailsObj.getUsername());
         User currentUser = spotifyService.getUserProfile(userDetailsObj.getUsername());
         model.addAttribute("username", currentUser.getDisplayName());
+        Gson gson = new Gson();
+
+        // 각 PlaylistDTO의 playlistThemes를 파싱하여 모델에 추가
+        for (PlaylistDTO playlist : playlists) {
+            String themesJson = playlist.getPlaylistThemes();
+            String enthemesJson = playlist.getPlaylistEnThemes();
+            List<String> themes = gson.fromJson(themesJson, new TypeToken<List<String>>() {}.getType());
+            List<String> enthemes = gson.fromJson(enthemesJson, new TypeToken<List<String>>() {}.getType());
+            playlist.setParsedThemes(themes);
+            playlist.setParsedEnThemes(enthemes);
+        }
+    
         model.addAttribute("playlists", playlists);
         return "mylist";
     }

@@ -1,5 +1,7 @@
 package com.example.mrs_spring_web.Model.DTO;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,10 @@ public class PlaylistDTO {
     private String playlistTracksCount;
     private String playlistDuration;
     private String playlistUserId;
+    private String playlistEnThemes;
     private String playlistThemes;
+    private String playlistCoverSrc;
+
+    private List<String> parsedThemes;
+    private List<String> parsedEnThemes;
 }

@@ -72,6 +72,8 @@ def main_recommend(input_tags, num_songs):
 
     most_common_songs = song_counter.most_common(num_songs)
     melon_ids = [song_id for song_id, _ in most_common_songs]
+
+    print(melon_ids)
     spotify_ids, melon_to_spotify_data = melon_to_spotify(melon_ids)
 
     unique_spotify_ids = list(dict.fromkeys(spotify_ids))

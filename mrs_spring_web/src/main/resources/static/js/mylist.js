@@ -1,40 +1,47 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // 모든 playIcon 요소를 찾습니다.
-    const playIcons = document.querySelectorAll("#playIcon");
-
-    // 각 playIcon 요소에 클릭 이벤트 리스너를 추가합니다.
-    playIcons.forEach(icon => {
-        icon.addEventListener("click", function () {
-            fetch('../templates/playerbar.html')
-                .then(response => response.text())
-                .then(html => {
-                    document.body.insertAdjacentHTML('beforeend', html);
-
-                    // HTML에 연결된 CSS 파일을 가져와 삽입합니다.
-                    const linkElement = document.createElement('link');
-                    linkElement.rel = 'stylesheet';
-                    linkElement.href = '../static/css/playerbar.css';
-                    document.head.appendChild(linkElement);
-
-                    // HTML에 연결된 JavaScript 파일을 가져와 실행합니다.
-                    const scriptElement = document.createElement('script');
-                    scriptElement.src = '../static/js/playerbar.js';
-                    document.body.appendChild(scriptElement);
-                });
-        });
-    });
-
-    // Tooltip 초기화
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-});
-
-function confirmDelete() {
+function confirmDelete(playlistid) {
     const result = confirm("정말 삭제하시겠습니까?");
     if (result) {
-        // deletePlaylist();
+        deletePlaylist(playlistid);
     }
 }
 
+function deletePlaylist(playlistid) {
+    data = {
+        "playlistId" : playlistid
+    }
+    fetch("/api/v1/deleteplaylist", {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        alert("삭제되었습니다.")
+        window.location.reload();
+    })
+
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+function showplaylistpage(tracks, themes, enthemes, src) {
+    console.log('Recommended Tracks:');
+    const tokenizedTheme = JSON.parse(themes);
+    const trackUris = JSON.parse(tracks);
+    const entokenizedTheme = JSON.parse(enthemes);
+    // Create a URL with query parameters
+    const queryParams = new URLSearchParams();
+    queryParams.append('tokenizedTheme', JSON.stringify(tokenizedTheme));
+    queryParams.append('entokenizedTheme', JSON.stringify(entokenizedTheme));
+    // Add recommended tracks to query parameters
+    queryParams.append('recommendedtracks', JSON.stringify(trackUris));
+    queryParams.append('playlistCoverSrc', src);
+    // Redirect to /playlist with the track data as query parameters
+    window.location.href = `/playlist?${queryParams.toString()}`;
+}
 

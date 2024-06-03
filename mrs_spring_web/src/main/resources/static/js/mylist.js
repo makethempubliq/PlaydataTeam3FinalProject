@@ -42,6 +42,6 @@ function showplaylistpage(tracks, themes, enthemes, src) {
     queryParams.append('recommendedtracks', JSON.stringify(trackUris));
     queryParams.append('playlistCoverSrc', src);
     // Redirect to /playlist with the track data as query parameters
-    window.location.href = `/playlist?${queryParams.toString()}`;
+    window.location.href = `/user/playlist?${queryParams.toString()}`;
 }
 

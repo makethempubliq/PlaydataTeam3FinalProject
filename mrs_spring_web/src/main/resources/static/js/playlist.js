@@ -126,7 +126,7 @@ function loadScript(src) {
 }
 
 document.getElementById("playIcon").addEventListener("click", function () {
-    fetch('/playerbar?trackdata=' + tracklistValue)
+    fetch('/user/playerbar?trackdata=' + tracklistValue)
         .then(response => response.text())
         .then(html => {
             document.body.insertAdjacentHTML('beforeend', html);

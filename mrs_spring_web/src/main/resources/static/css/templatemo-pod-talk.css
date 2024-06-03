@@ -536,19 +536,21 @@ main {
 .owl-carousel-info {
   background-color: var(--section-bg-color);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   right: 0;
   left: 0;
-  padding: 30px;
+  padding: 20px 30px;
 }
 
 .badge {
-  background-color: var(--custom-btn-bg-color);
+  background-color: #208877;
   font-family: var(--title-font-family);
+  font-size: xx-small;
   border-radius: var(--border-radius-large);
   color: var(--white-color);
   padding-bottom: 5px;
+  opacity: 0.9;
 }
 
 .owl-carousel-info-wrap .social-share,
@@ -1172,7 +1174,7 @@ main {
 
   .section-padding {
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 200px;
   }
 
   .navbar-nav {

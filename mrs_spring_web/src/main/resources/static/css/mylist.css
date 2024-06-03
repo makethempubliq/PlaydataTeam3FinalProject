@@ -82,6 +82,10 @@
     flex-grow: 1;
 }
 
+.list-group-item {
+    cursor: pointer;
+}
+
 .icon {
     text-align: right;
     margin-left: auto;

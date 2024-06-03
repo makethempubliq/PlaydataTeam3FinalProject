@@ -135,18 +135,9 @@ closeButton.addEventListener('click', function () {
 
     // 재생 중인 음악을 일시정지합니다.
     player.pause();
+    player.disconnect();
 
     // 재생 중인 음악과 플레이리스트를 모두 초기화합니다.
-    document.getElementById('albumCover').src = '';
-    document.getElementById('trackTitle').textContent = '';
-    document.getElementById('artistName').textContent = '';
-    document.getElementById('position').textContent = '0:00';
-    document.getElementById('duration').textContent = '0:00';
-    document.getElementById('progressbar').value = 0;
-
-    // 재생목록을 초기화합니다.
-    document.getElementById("tracklist").value = '';
-
 });
 
 document.getElementById('playlist-icon').addEventListener('click', function () {

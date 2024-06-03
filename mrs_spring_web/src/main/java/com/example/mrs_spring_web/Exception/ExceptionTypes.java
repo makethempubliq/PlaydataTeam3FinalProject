@@ -12,7 +12,9 @@ public enum ExceptionTypes {
     CredentialsExpiredException(404, "비밀번호만료"),
     DisabledException(405, "계정비활성화"),
     LockedException(406, "계정잠김"),
-    NoneException(407, "알 수 없는 에러 입니다.");
+    NoneException(407, "알 수 없는 에러 입니다."),
+    OAuth2AuthenticationException(408, "로그인에 실패했습니다."),
+    IllegalStateException(409, "예상치 못한 에러가 발생했습니다. 메인 페이지로 돌아갑니다.");
     private int code;
     private String msg;
 }

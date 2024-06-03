@@ -1,12 +1,8 @@
-import os
-import re
 from emoji import core
 import re
 from ckonlpy.tag import Twitter
-from collections import Counter
 from sklearn.metrics.pairwise import cosine_similarity
 
-import pandas as pd
 import json, csv
 
 

@@ -39,7 +39,7 @@ public class spotifyController {
     @ResponseBody
     public void makePlaylistToSpotify(@RequestParam("playlistName") String playlistName, @RequestParam("tracklist") String[] tracklist, Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj) throws Exception{
         //TODO: process POST request
-        log.info(tracklist.getClass().getName());
+        log.info(tracklist[0]);
         spotifyService.makePlaylist(userDetailsObj.getUsername(), tracklist, playlistName);
     }
 

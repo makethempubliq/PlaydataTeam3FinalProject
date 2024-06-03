@@ -3,7 +3,7 @@ from TagExtractor import extract_keywords, kor_to_en
 from script import main_recommend
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer 
 import logging, csv
 
 app = Flask(__name__)

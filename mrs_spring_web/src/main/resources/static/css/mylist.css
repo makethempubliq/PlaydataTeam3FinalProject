@@ -1,0 +1,108 @@
+.nav-item {
+    list-style-type: none;
+}
+
+.service-name {
+    font-family: "Archivo Black", sans-serif;
+    /* font-weight: 400; */
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.dash {
+    letter-spacing: 10px;
+    font-weight: bold;
+    color: blue;
+}
+
+.dropdown-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.dropdown-toggle-wrapper i {
+    margin-right: 10px;
+    font-size: 2em;
+}
+
+.row {
+    margin-bottom: 70px;
+}
+
+.album-cover {
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-title {
+    margin: 0;
+    font-weight: bold;
+
+}
+
+.artist-name {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.control-icons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    /* 아이콘과 프로그레스 바 사이의 간격 추가 */
+}
+
+.control-icon {
+    font-size: 2em;
+    /* 아이콘 크기 조절 */
+    margin: 0 10px;
+}
+
+
+.mylist-list-group-item {
+    border-width: 2px;
+    border-color: #dee2e6;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f5;
+    border: 1px solid #ccc;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    flex-grow: 1;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.icon {
+    text-align: right;
+    margin-left: auto;
+}
+
+.clickable:hover {
+    color: #0675CD;
+    cursor: pointer;
+}
+
+#themeButton {
+    height: 25px;
+    background-color: #208877;
+    border-color: #208877;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 6px;
+    cursor: default;
+}

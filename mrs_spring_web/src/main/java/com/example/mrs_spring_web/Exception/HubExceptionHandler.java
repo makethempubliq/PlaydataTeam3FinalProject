@@ -17,10 +17,15 @@ public class HubExceptionHandler {
     public void ExceptionHandler(Exception e, HttpServletResponse response) throws IOException{
         ExceptionTypes exceptionTypes = ExceptionTypes.valueOf(e.getClass().getSimpleName());
         log.info(exceptionTypes.toString());
-        String errorMessage = exceptionTypes.getMsg(); 
-        log.error("message: " + errorMessage);
-        errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
-        response.sendRedirect("/user/main?error=true&exception="+errorMessage);
+        if (exceptionTypes.toString().equals("IllegalStateException")) {
+            response.sendRedirect("/user/mylists");
+        }
+        else {
+            String errorMessage = exceptionTypes.getMsg(); 
+            log.error("message: " + errorMessage);
+            errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
+            response.sendRedirect("/user/main?error=true&exception="+errorMessage);
+        }
     }
 }
 

@@ -17,12 +17,22 @@ async function getPlaylistArt(data) {
 		}
 
 		const result = await response.blob();
+		
 		return result;
 	} catch (error) {
 		console.error("Error querying the API:", error);
 	}
 }
 
+function saveBlobToLocalStorage(blob) {
+    const reader = new FileReader();
+    reader.onloadend = function () {
+        localStorage.setItem("playlistCoverBlob", reader.result);
+    };
+    reader.readAsDataURL(blob);
+}
+
+// 저장된 이미지 블롭을 로컬 스토리지에서 불러오기
 
 function msToMinutesSeconds(ms) {
     // 1초는 1000 밀리초

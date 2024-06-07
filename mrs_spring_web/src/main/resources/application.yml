@@ -4,6 +4,8 @@ server:
       # 한글깨짐 처리 
       force-response: true
 
+
+
 # Spring Data Source 설정 
 spring:
 
@@ -77,4 +79,15 @@ spring:
                 token-uri : https://accounts.spotify.com/api/token
                 user-info-uri : https://api.spotify.com/v1/me
                 user-name-attribute : id
-
+cloud:
+  aws:
+    s3:
+      bucket: rhythmiq # {버킷명}
+    credentials:
+      access-key: AKIAVJC3VPCMTGFZIB5I
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false

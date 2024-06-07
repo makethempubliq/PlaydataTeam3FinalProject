@@ -1,11 +1,37 @@
-document.getElementById("heartIcon").addEventListener("click", function () {
+document.getElementById("heartIcon").addEventListener("click", async function () {
     var heartIcon = document.getElementById("heartIcon");
     const tracklist = document.getElementById("tracklist2").value;
     const themes = document.getElementById("themes").value;
     const enthemes = document.getElementById("enthemes").value;
     const totalDuration = document.getElementById("totalDuration").textContent;
     const playlistTrackCount = document.querySelectorAll('.custom-list-group-item').length;
-    const playlistCoverSrc = document.getElementById("playlistcover").src;
+    let playlistCoverSrc = document.getElementById("playlistcover").src;
+    const base64Data = localStorage.getItem("playlistCoverBlob");
+    if (base64Data) {
+        // Base64 문자열을 Blob으로 변환
+        const byteCharacters = atob(base64Data.split(',')[1]);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'image/png' });
+
+        // FormData에 Blob 추가
+        const formData = new FormData();
+        formData.append("file", blob);
+        const response = await fetch("/api/v1/imagetos3", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        localStorage.removeItem("playlistCoverBlob");
+        playlistCoverSrc = await response.text();
+    }
+    console.log(playlistCoverSrc)
 
     const data = {
         "playlistTracks": tracklist,
@@ -24,6 +50,8 @@ document.getElementById("heartIcon").addEventListener("click", function () {
     })
         .then(alert("플레이리스트가 만들어졌습니다!"));
 });
+
+// 이미지 블롭을 로컬 스토리지에 저장
 
 
 $(document).ready(function () {

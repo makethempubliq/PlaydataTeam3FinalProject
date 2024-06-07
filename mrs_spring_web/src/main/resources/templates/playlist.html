@@ -91,14 +91,11 @@ https://templatemo.com/tm-584-pod-talk
                             <img id="playlistcover" src="" alt="플레이리스트 이미지" class="mr-3 playlist-image">
                             <script>
                                 getPlaylistArt({ inputs: "{{enthemes}}" }).then((blob) => {
-                                    if (blob) {
-                                        const url = URL.createObjectURL(blob);
-                                        const img = document.getElementById("playlistcover");
-                                        img.src = url;
-                                    }
+                                    saveBlobToLocalStorage(blob);
+                                    const url = URL.createObjectURL(blob);
+                                    document.getElementById("playlistcover").src = url;
                                 });
                             </script>
-
                             {{/playlistArt}}
                             <div class="icon" style="margin-top:20px;">
                                 <h4 class="d-inline-block mr-3" style="margin-right: 10px;">Theme : </h4>
@@ -126,6 +123,7 @@ https://templatemo.com/tm-584-pod-talk
                                     <input type="hidden" id="tracklist2" name="tracklist2" value="{{tracklist2}}">
                                     <input type="hidden" id="themes" name="themes" value="{{stringThemes}}">
                                     <input type="hidden" id="enthemes" name="enthemes" value="{{stringEnThemes}}">
+                                    <input id = "blob" type = 'hidden'>
                                     <button type="submit">save</button>
                                 </form>
                             </div>

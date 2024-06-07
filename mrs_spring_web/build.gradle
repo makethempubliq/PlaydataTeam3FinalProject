@@ -11,6 +11,10 @@ java {
 	sourceCompatibility = '17'
 }
 
+springBoot {
+    mainClass = 'com.example.MrsSpringWebApplication'
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -30,6 +34,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	implementation 'se.michaelthelin.spotify:spotify-web-api-java:8.4.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

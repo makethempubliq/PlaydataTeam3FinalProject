@@ -53,7 +53,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
         console.log('All tasks completed.');
 
-        setInterval(async () => {
+        intervalId = setInterval(async () => {
             player.getCurrentState().then(state => {
                 if (!state) {
                     console.error('User is not playing music through the Web Playback SDK');
@@ -122,27 +122,26 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     };
 
     player.connect();
+
+    document.getElementById('close-player-bar').addEventListener('click', function () {
+        player.pause();
+        player.removeListener('ready');
+        player.disconnect();
+        clearInterval(intervalId);
+        var playerBar = document.getElementById('player-bar');
+        if (playerBar) {
+            playerBar.remove();
+        }
+    });
+    
+    document.getElementById('playlist-icon').addEventListener('click', function () {
+        document.getElementById('playlist-sidebar').classList.toggle('show');
+    });    
 }
 
 // "close-player-bar" 아이콘을 가져옵니다.
-const closeButton = document.getElementById('close-player-bar');
 
 // "close-player-bar" 아이콘에 클릭 이벤트 리스너를 추가합니다.
-closeButton.addEventListener('click', function () {
-    // player bar와 side bar를 감춥니다.
-    document.getElementById('player-bar').style.display = 'none';
-    document.getElementById('playlist-sidebar').style.display = 'none';
-
-    // 재생 중인 음악을 일시정지합니다.
-    player.pause();
-    player.disconnect();
-
-    // 재생 중인 음악과 플레이리스트를 모두 초기화합니다.
-});
-
-document.getElementById('playlist-icon').addEventListener('click', function () {
-    document.getElementById('playlist-sidebar').classList.toggle('show');
-});
 
 function msToMinutesSeconds(ms) {
     // 1초는 1000 밀리초
@@ -160,20 +159,4 @@ function msToMinutesSeconds(ms) {
     return `${minutes}:${formattedSeconds}`;
 }
 
-document.getElementById('playIcon2').onclick = async function () {
-    // 트랙리스트를 다시 불러옵니다.
-    var tracklistInput = document.getElementById("tracklist");
-    var tracklistValue = tracklistInput.value;
-
-    // 음악 설정
-    await fetch('/api/v1/setmusic', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(tracklistValue)
-    });
-
-    // 트랙리스트를 설정한 후 플레이어를 다시 연결합니다.
-    player.connect();
-};
+// 

@@ -4,47 +4,34 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>RhythmiQ - Create playlists on the go, dive into new favorites.</title>
-
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap"
         rel="stylesheet">
-
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="../static/css/bootstrap-icons.css">
-
     <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
-
     <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
-
     <link href="../static/css/templatemo-pod-talk.css" rel="stylesheet">
     <link href="../static/css/main.css" rel="stylesheet">
-    <!--
-
-TemplateMo 584 Pod Talk
-
-https://templatemo.com/tm-584-pod-talk
-
--->
+    <!-- TemplateMo 584 Pod Talk -->
 </head>
 
 <body>
+
+    <div class="spinner-wrapper">
+        <div class="text-center">
+            <div class="spinner-border text-dark" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    </div>
 
     <main>
         <nav class="navbar navbar-expand-lg">
@@ -52,7 +39,6 @@ https://templatemo.com/tm-584-pod-talk
                 <a class="navbar-brand me-lg-auto me-0" href="/user/main">
                     <span class="logo-text"><span class="logo-dash">//</span>RhythmiQ</span>
                 </a>
-
                 <li class="nav-item dropdown">
                     <div class="dropdown-toggle-wrapper">
                         <i class="bi bi-person-circle"></i>
@@ -69,25 +55,18 @@ https://templatemo.com/tm-584-pod-talk
                 </li>
             </div>
         </nav>
-
-
-
         <section class="hero-section">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-12 col-12">
                         <div class="text-center mb-5 pb-2">
                             <h1 class="text-white service-name"><span class="dash">//</span>RhythmiQ</h1>
-
-                            <p class="text-white">
-                                Create playlists on the go, dive into new favorites.</p>
-
+                            <p class="text-white">Create playlists on the go, dive into new favorites.</p>
                             <a href="/user/makeplaylist" class="btn custom-btn smoothscroll mt-3">Create new
                                 playlist</a>
                         </div>
                         <div class="owl-carousel owl-theme">
-                            <div class="owl-carousel-info-wrap item" onclick = 'presettheme(["청량한", "여름", "날씨"])'>
+                            <div class="owl-carousel-info-wrap item" onclick='presettheme(["청량한", "여름", "날씨"])'>
                                 <img src="../static/images/cover/summer.jpg" class="owl-carousel-image img-fluid"
                                     alt="">
                                 <div class="owl-carousel-info">
@@ -97,8 +76,7 @@ https://templatemo.com/tm-584-pod-talk
                                     <span class="badge">날씨</span>
                                 </div>
                             </div>
-
-                            <div class="owl-carousel-info-wrap item" onclick = 'presettheme(["사랑", "달달"])'>
+                            <div class="owl-carousel-info-wrap item" onclick='presettheme(["사랑", "달달"])'>
                                 <img src="../static/images/cover/Lovecore Aesthetic.jpeg"
                                     class="owl-carousel-image img-fluid" alt="">
                                 <div class="owl-carousel-info">
@@ -107,8 +85,7 @@ https://templatemo.com/tm-584-pod-talk
                                     <span class="badge">달달</span>
                                 </div>
                             </div>
-
-                            <div class="owl-carousel-info-wrap item" onclick = 'presettheme(["주말", "카페", "커피"])'>
+                            <div class="owl-carousel-info-wrap item" onclick='presettheme(["주말", "카페", "커피"])'>
                                 <img src="../static/images/cover/cafe.jpg" class="owl-carousel-image img-fluid" alt="">
                                 <div class="owl-carousel-info">
                                     <p class="listname">주말, 커피숍에서</p>
@@ -117,8 +94,7 @@ https://templatemo.com/tm-584-pod-talk
                                     <span class="badge">커피</span>
                                 </div>
                             </div>
-
-                            <div class="owl-carousel-info-wrap item" onclick = 'presettheme(["산책", "걷기"])'>
+                            <div class="owl-carousel-info-wrap item" onclick='presettheme(["산책", "걷기"])'>
                                 <img src="../static/images/cover/walk.jpg" class="owl-carousel-image img-fluid" alt="">
                                 <div class="owl-carousel-info">
                                     <p class="listname">산책하기 좋은날</p>
@@ -126,8 +102,7 @@ https://templatemo.com/tm-584-pod-talk
                                     <span class="badge">걷기</span>
                                 </div>
                             </div>
-
-                            <div class="owl-carousel-info-wrap item" onclick = 'presettheme(["출근", "노동요"])'>
+                            <div class="owl-carousel-info-wrap item" onclick='presettheme(["출근", "노동요"])'>
                                 <img src="../static/images/cover/commute.jpeg" class="owl-carousel-image img-fluid"
                                     alt="">
                                 <div class="owl-carousel-info">
@@ -136,36 +111,27 @@ https://templatemo.com/tm-584-pod-talk
                                     <span class="badge">노동요</span>
                                 </div>
                             </div>
-
-                            <div class="owl-carousel-info-wrap item" onclick = 'presettheme(["휴식", "재즈"])'>
+                            <div class="owl-carousel-info-wrap item" onclick='presettheme(["휴식", "재즈"])'>
                                 <img src="../static/images/cover/rest.jpg" class="owl-carousel-image img-fluid" alt="">
                                 <div class="owl-carousel-info">
                                     <p class="listname">휴식을 가져다주는 재즈</p>
                                     <span class="badge">휴식</span>
                                     <span class="badge">재즈</span>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
-
-
-
         <section class="trending-podcast-section section-padding">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-12 col-12">
                         <div class="section-title-wrap mb-5">
                             <h4 class="section-title">Trending Now</h4>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-full">
                             <div class="custom-block-image-wrap">
@@ -173,27 +139,14 @@ https://templatemo.com/tm-584-pod-talk
                                     <img src="{{koreatoptrackart}}" class="custom-block-image img-fluid" alt="">
                                 </a>
                             </div>
-
                             <div class="custom-block-info">
                                 <h5 class="mb-2">
-                                    <a href="/user/playlist?id=37i9dQZEVXbNxXF4SkHj9F">
-                                        Korean Top Tracks
-                                    </a>
+                                    <a href="/user/playlist?id=37i9dQZEVXbNxXF4SkHj9F">Korean Top Tracks</a>
                                 </h5>
                                 <p> 한국 인기 차트</p>
                             </div>
-
-                            <!-- <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i id="playIcon" class="bi bi-play-circle" type="button"></i>
-                                </a>
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-                            </div> -->
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-full">
                             <div class="custom-block-image-wrap">
@@ -201,86 +154,23 @@ https://templatemo.com/tm-584-pod-talk
                                     <img src="{{globaltoptrackart}}" class="custom-block-image img-fluid" alt="">
                                 </a>
                             </div>
-
                             <div class="custom-block-info">
                                 <h5 class="mb-2">
-                                    <a href="/user/playlist?id=37i9dQZEVXbMDoHDwVN2tF">
-                                        Global Top Tracks
-                                    </a>
+                                    <a href="/user/playlist?id=37i9dQZEVXbMDoHDwVN2tF">Global Top Tracks</a>
                                 </h5>
-                                <p>
-                                    글로벌 인기 차트
-                                </p>
+                                <p> 글로벌 인기 차트</p>
                             </div>
-
-                            <!-- <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i id="playIcon" class="bi bi-play-circle" type="button"></i>
-                                </a>
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-                            </div> -->
                         </div>
                     </div>
-
-                    <!-- <div class="col-lg-4 col-12">
-                        <div class="custom-block custom-block-full">
-                            <div class="custom-block-image-wrap">
-                                <a href="detail-page.html">
-                                    <img src="../static/images/podcast/12577967_02.jpg"
-                                        class="custom-block-image img-fluid" alt="">
-                                </a>
-                            </div>
-
-                            <div class="custom-block-info">
-                                <h5 class="mb-2">
-                                    <a href="detail-page.html">
-                                        Playlist 3
-                                    </a>
-                                    <i id="playIcon" class="bi bi-play-circle" type="button"></i>
-                                </h5>
-
-                                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div> -->
-
                 </div>
             </div>
         </section>
-
     </main>
-
-
     <footer class="site-footer">
         <div class="container">
             Copyright © Data-engineering 29th, Team 3
         </div>
     </footer>
-
     <!-- JAVASCRIPT FILES -->
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/bootstrap.bundle.min.js"></script>

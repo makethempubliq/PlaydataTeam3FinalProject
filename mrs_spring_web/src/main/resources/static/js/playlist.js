@@ -48,7 +48,7 @@ document.getElementById("heartIcon").addEventListener("click", async function ()
         },
         body: JSON.stringify(data)
     })
-        .then(alert("플레이리스트가 만들어졌습니다!"));
+        .then(alert("플레이리스트가 저장되었습니다."));
 });
 
 // 이미지 블롭을 로컬 스토리지에 저장
@@ -74,8 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
     playlistForm.style.display = "none";
 });
 
-
-
+// 트랙리스트 hidden 필드의 값을 양쪽에 있는 대괄호를 제거하여 수정
+var tracklistInput = document.getElementById("tracklist");
+var tracklistValue = tracklistInput.value;
+tracklistValue = tracklistValue.substring(1, tracklistValue.length - 1);
+tracklistInput.value = tracklistValue;
 
 // 시간을 초 단위로 변환하는 함수
 function timeToSeconds(time) {
@@ -151,7 +154,7 @@ document.getElementById("playlist-form").addEventListener("submit", function (ev
         // 요청 완료 후 처리할 작업
         if (xhr.status === 200) {
             // 요청이 성공하면 알림을 표시하거나 다른 작업을 수행할 수 있습니다.
-            alert("플레이리스트가 만들어졌습니다!");
+            alert("플레이리스트가 저장되었습니다.");
         } else {
             // 요청이 실패한 경우에 대한 처리
             alert("요청에 실패했습니다.");

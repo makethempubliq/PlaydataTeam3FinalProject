@@ -7,7 +7,7 @@ function confirmDelete(playlistid) {
 
 function deletePlaylist(playlistid) {
     data = {
-        "playlistId" : playlistid
+        "playlistId": playlistid
     }
     fetch("/api/v1/deleteplaylist", {
         method: 'post',
@@ -16,17 +16,17 @@ function deletePlaylist(playlistid) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        alert("삭제되었습니다.")
-        window.location.reload();
-    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            alert("삭제되었습니다.")
+            window.location.reload();
+        })
 
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 }
 
 function showplaylistpage(tracks, themes, enthemes, src) {
@@ -44,4 +44,15 @@ function showplaylistpage(tracks, themes, enthemes, src) {
     // Redirect to /playlist with the track data as query parameters
     window.location.href = `/user/playlist?${queryParams.toString()}`;
 }
+
+// 스피너
+$(document).ready(function () {
+    $(document).on('click', 'li', function (event) {
+        $('.spinner-wrapper').show();
+    });
+
+    $(window).on('load', function () {
+        $('.spinner-wrapper').hide();
+    });
+});
 

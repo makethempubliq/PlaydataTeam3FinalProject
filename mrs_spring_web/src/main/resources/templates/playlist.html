@@ -116,14 +116,14 @@ https://templatemo.com/tm-584-pod-talk
                                     title="스포티파이에 플레이리스트 저장"></i>
                                 <form id="playlist-form" class="playlist-form" method="post"
                                     action="/api/v1/saveplaylist" style="margin-top: 10px;">
-                                    <label for="playlist-name" style="margin-right: 10px; font-size: 0.95em;">플레이리스트 이름:
-                                    </label>
-                                    <input type="text" id="playlist-name" name="playlistName">
+                                    <!-- <label for="playlist-name" style="margin-right: 10px; font-size: 0.95em;">플레이리스트 이름:
+                                    </label> -->
+                                    <input type="text" id="playlist-name" name="playlistName" placeholder="이름을 입력하세요">
                                     <input type="hidden" id="tracklist" name="tracklist" value="{{tracklist}}">
                                     <input type="hidden" id="tracklist2" name="tracklist2" value="{{tracklist2}}">
                                     <input type="hidden" id="themes" name="themes" value="{{stringThemes}}">
                                     <input type="hidden" id="enthemes" name="enthemes" value="{{stringEnThemes}}">
-                                    <input id = "blob" type = 'hidden'>
+                                    <input id="blob" type='hidden'>
                                     <button type="submit">save</button>
                                 </form>
                             </div>
@@ -169,7 +169,6 @@ https://templatemo.com/tm-584-pod-talk
 
 
     <!-- JAVASCRIPT FILES -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -178,14 +177,6 @@ https://templatemo.com/tm-584-pod-talk
     <script src="../static/js/owl.carousel.min.js"></script>
     <script src="../static/js/custom.js"></script>
     <script src="../static/js/playlist.js"></script>
-
-    <script>
-        // 트랙리스트 hidden 필드의 값을 양쪽에 있는 대괄호를 제거하여 수정
-        var tracklistInput = document.getElementById("tracklist");
-        var tracklistValue = tracklistInput.value;
-        tracklistValue = tracklistValue.substring(1, tracklistValue.length - 1);
-        tracklistInput.value = tracklistValue;
-    </script>
 
 
 </body>

@@ -1,6 +1,6 @@
 
 from TagExtractor import extract_keywords, kor_to_en
-from script import main_recommend
+from SongRecommender import main_recommend_with_knn
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer 
@@ -57,7 +57,7 @@ def get_recommended_tracks():
     logging.info("recommending..........")
 
     # Placeholder for track recommendation logic
-    track_uris = main_recommend(tokenized_theme, track_counts)  # Add more URIs as needed
+    track_uris = main_recommend_with_knn(tokenized_theme, track_counts)  # Add more URIs as needed
     track_uris = ["spotify:track:"+i for i in track_uris]
     response = {
         "tokenizedTheme": tokenized_theme,

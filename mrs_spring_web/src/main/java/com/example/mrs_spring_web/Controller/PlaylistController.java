@@ -47,6 +47,8 @@ public class PlaylistController {
     public void deleteplaylist(@RequestBody PlaylistDTO playlistDTO, Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj) throws Exception{
         //TODO: process POST request
         playlistService.deletePlaylist(playlistDTO.getPlaylistId());
+        s3Service.delete(playlistDTO.getPlaylistCoverSrc());
+
     }
     
     @PostMapping("/imagetos3")

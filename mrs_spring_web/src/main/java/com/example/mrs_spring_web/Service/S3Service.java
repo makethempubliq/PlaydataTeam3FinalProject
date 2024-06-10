@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class S3Service {
     private final AmazonS3 amazonS3Client;
+    private static final String S3_PREFIX = "https://rhythmiq.s3.ap-northeast-2.amazonaws.com/";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -40,6 +41,19 @@ public class S3Service {
                         .withCannedAcl(CannedAccessControlList.PublicRead)	// PublicRead 권한으로 업로드 됨
         );
         return amazonS3Client.getUrl(bucket, fileName).toString();
+    }
+
+    public void delete(String fileurl) throws Exception {
+        amazonS3Client.deleteObject(bucket, removeS3Prefix(fileurl));
+    }
+
+
+
+    public static String removeS3Prefix(String uri) {
+        if (uri != null && uri.startsWith(S3_PREFIX)) {
+            return uri.substring(S3_PREFIX.length());
+        }
+        return uri;
     }
 
 }

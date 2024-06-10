@@ -6,7 +6,7 @@ from flask_cors import CORS
 from sentence_transformers import SentenceTransformer 
 import logging, csv
 
-app = Flask(__name__)
+app = Flask(__name__)   
 CORS(app)
 # Configure logging
 logging.basicConfig(level=logging.INFO)

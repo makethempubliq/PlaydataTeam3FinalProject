@@ -132,16 +132,17 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         if (playerBar) {
             playerBar.remove();
         }
+        var playlistSidebar = document.getElementById('playlist-sidebar');
+        if (playlistSidebar) {
+            playlistSidebar.remove();
+        }
     });
-    
+
     document.getElementById('playlist-icon').addEventListener('click', function () {
         document.getElementById('playlist-sidebar').classList.toggle('show');
-    });    
+    });
 }
 
-// "close-player-bar" 아이콘을 가져옵니다.
-
-// "close-player-bar" 아이콘에 클릭 이벤트 리스너를 추가합니다.
 
 function msToMinutesSeconds(ms) {
     // 1초는 1000 밀리초

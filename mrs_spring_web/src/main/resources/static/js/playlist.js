@@ -207,3 +207,20 @@ document.getElementById("playIcon").addEventListener("click", function () {
         });
 });
 
+// navigation bar
+$(document).ready(function () {
+    function updateMenu() {
+        if ($(window).width() <= 992) {
+            $('#navbarDropdown').hide();
+            $('.dropdown-menu').hide();
+            $('.list-unstyled').show();
+        } else {
+            $('#navbarDropdown').show();
+            $('.dropdown-menu').show();
+            $('.list-unstyled').hide();
+        }
+    }
+
+    updateMenu();
+    $(window).resize(updateMenu);
+});

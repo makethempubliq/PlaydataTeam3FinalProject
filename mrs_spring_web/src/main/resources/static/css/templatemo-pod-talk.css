@@ -266,6 +266,9 @@ main {
 /*---------------------------------------
   NAVIGATION              
 -----------------------------------------*/
+
+
+
 .navbar {
   background-color: transparent;
   position: absolute;
@@ -482,6 +485,35 @@ main {
 
 .navbar-toggler .navbar-toggler-icon::after {
   top: 8px;
+}
+
+/* 추가 */
+
+@media (max-width: 992px) {
+  .dropdown-menu {
+    display: none !important;
+  }
+
+  .navbar-nav .dropdown-toggle {
+    display: none;
+  }
+
+  .list-unstyled .dropdown-item {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 993px) {
+  .list-inline {
+    display: none;
+  }
+}
+
+.username {
+  font-weight: bold;
+  font-size: large;
 }
 
 

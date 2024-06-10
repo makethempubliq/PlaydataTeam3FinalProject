@@ -44,3 +44,21 @@ $(document).ready(function () {
         $('.spinner-wrapper').hide();
     });
 });
+
+// navigation bar
+$(document).ready(function () {
+    function updateMenu() {
+        if ($(window).width() <= 992) {
+            $('#navbarDropdown').hide();
+            $('.dropdown-menu').hide();
+            $('.list-unstyled').show();
+        } else {
+            $('#navbarDropdown').show();
+            $('.dropdown-menu').show();
+            $('.list-unstyled').hide();
+        }
+    }
+
+    updateMenu();
+    $(window).resize(updateMenu);
+});

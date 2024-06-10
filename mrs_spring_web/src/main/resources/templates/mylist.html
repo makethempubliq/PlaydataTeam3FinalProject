@@ -53,21 +53,31 @@ https://templatemo.com/tm-584-pod-talk
                 <a class="navbar-brand me-lg-auto me-0" href="/user/main">
                     <span class="logo-text"><span class="logo-dash">//</span>RhythmiQ</span>
                 </a>
-
-                <li class="nav-item dropdown">
-                    <div class="dropdown-toggle-wrapper">
-                        <i class="bi bi-person-circle"></i>
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{username}}
-                        </a>
-                    </div>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/user/mylists">저장된 플레이리스트</a></li>
-                        <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
-                        <li><a class="dropdown-item" href="#">회원탈퇴</a></li>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i> <span class="username">{{username}}</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/mylists">저장된 플레이리스트</a></li>
+                                <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+                                <li><a class="dropdown-item" href="#">회원탈퇴</a></li>
+                            </ul>
+                            <ul class="list-unstyled d-lg-none">
+                                <li><a class="dropdown-item" href="/user/mylists">저장된 플레이리스트</a></li>
+                                <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+                                <li><a class="dropdown-item" href="#">회원탈퇴</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
+                </div>
             </div>
         </nav>
 

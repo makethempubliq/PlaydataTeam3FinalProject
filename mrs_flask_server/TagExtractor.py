@@ -72,6 +72,8 @@ def kor_to_en (keywords):
         print("JSON 파일을 성공적으로 읽었습니다.")   
     except Exception as e:
         print(f"Error: {e}")
+    # with open(r"resources\static\data\tag_mapping.json", 'r', encoding='utf-8') as file:
+    #     translation_dict = json.load(file)
     
     english_tags = []
     for tag in keywords:

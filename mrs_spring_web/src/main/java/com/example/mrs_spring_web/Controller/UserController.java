@@ -24,6 +24,9 @@ import com.google.gson.reflect.TypeToken;
 
 import lombok.extern.slf4j.Slf4j;
 import se.michaelthelin.spotify.model_objects.specification.User;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Slf4j
 @Controller
@@ -159,6 +162,13 @@ public class UserController {
     
         model.addAttribute("playlists", playlists);
         return "mylist";
+    }
+
+    @PostMapping("/deleteuser")
+    public String deleteUser(Authentication authentication, @AuthenticationPrincipal UserDetails userDetailsObj) {
+        //TODO: process POST request
+        userService.deleteUser(userDetailsObj.getUsername());
+        return "redirect:/logout";
     }
     
 }

@@ -20,9 +20,7 @@ bucket_name = config['bucket_name']
 def extract_keywords(model, predefined_embeddings, sentence):
     try:
         response = s3_client.get_object(Bucket=bucket_name, Key="data/taglist.csv")
-        print(response)
         reader = csv.reader(io.StringIO(response["Body"].read().decode('cp949')))
-        print(reader)
         tag_list = next(reader)
         
     except Exception as e:

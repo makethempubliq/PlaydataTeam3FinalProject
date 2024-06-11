@@ -50,3 +50,21 @@
   })(window.jQuery);
 
 
+function deleteuser(){
+  fetch("/user/deleteuser", {
+        method: 'post'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        alert("탈퇴되었습니다.")
+        window.location.href = '/';
+    })
+
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+

@@ -1,6 +1,8 @@
 # base image 설정
 FROM python:3.11-slim
 
+COPY requirements.txt /app/
+
 COPY . /app
 # 작업 디렉토리 설정
 WORKDIR /app

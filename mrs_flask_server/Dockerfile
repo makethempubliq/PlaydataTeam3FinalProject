@@ -1,9 +1,7 @@
 # base image 설정
 FROM python:3.11-slim
 
-COPY mrs_flask_server/requirements.txt /app/
-
-COPY . /app
+COPY mrs_flask_server /app
 # 작업 디렉토리 설정
 WORKDIR /app
 

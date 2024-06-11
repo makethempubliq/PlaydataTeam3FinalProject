@@ -3,16 +3,30 @@ import re
 from ckonlpy.tag import Twitter
 from sklearn.metrics.pairwise import cosine_similarity
 
-import json, csv
+import json, csv, boto3, yaml, io
 
+with open('s3config.yaml', 'r') as f:
+    config = yaml.safe_load(f)
+
+s3_client = boto3.client(
+    service_name=config['service_name'],
+    region_name=config['region_name'],
+    aws_access_key_id=config['access_key'],
+    aws_secret_access_key=config['secret_key']
+)
+bucket_name = config['bucket_name']
 
 
 def extract_keywords(model, predefined_embeddings, sentence):
-    # 형태소 분석
-    # Okt 형태소 분석기
-    with open(r"resources\static\data\taglist.csv", "r") as file:
-        reader = csv.reader(file)
+    try:
+        response = s3_client.get_object(Bucket=bucket_name, Key="data/taglist.csv")
+        print(response)
+        reader = csv.reader(io.StringIO(response["Body"].read().decode('cp949')))
+        print(reader)
         tag_list = next(reader)
+        
+    except Exception as e:
+        print(f"Error: {e}")
     tokenizer = Twitter()
     tokenizer.add_dictionary(tag_list, 'Noun')
     tokenizer.add_dictionary(["플레이리스트"], 'Noun')
@@ -50,9 +64,17 @@ def extract_keywords(model, predefined_embeddings, sentence):
     return mapped_keywords
 
 def kor_to_en (keywords):
-    with open(r"resources\static\data\tag_mapping.json", 'r', encoding='utf-8') as file:
-        translation_dict = json.load(file)
-    print("JSON 파일을 성공적으로 읽었습니다.")
+    try:
+        print(keywords)
+        response = s3_client.get_object(Bucket=bucket_name, Key="data/tag_mapping.json")
+        print(response)
+        translation_dict = json.load(io.StringIO(response["Body"].read().decode('utf-8')))
+        print("JSON 파일을 성공적으로 읽었습니다.")   
+    except Exception as e:
+        print(f"Error: {e}")
+    # with open(r"resources\static\data\tag_mapping.json", 'r', encoding='utf-8') as file:
+    #     translation_dict = json.load(file)
+    
     english_tags = []
     for tag in keywords:
         translated_tag = translation_dict.get(tag)

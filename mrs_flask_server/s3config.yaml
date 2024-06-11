@@ -1,0 +1,5 @@
+service_name: "s3"
+region_name: "ap-northeast-2"
+access_key: "AKIAVJC3VPCMTGFZIB5I"
+secret_key: "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"
+bucket_name: "rhythmiq"

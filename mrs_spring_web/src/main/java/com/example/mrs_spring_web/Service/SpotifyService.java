@@ -62,10 +62,6 @@ public class SpotifyService {
         }
         log.info("[StartTracks]"+trackUris.toString());
         spotifyApi.startResumeUsersPlayback().uris(trackUris).device_id(user.getDeviceId()).build().execute();
-        // for (String track : tracks) {
-        //     AddItemToUsersPlaybackQueueRequest addItemToUsersPlaybackQueueRequest = spotifyApi.addItemToUsersPlaybackQueue(track).device_id(user.getDeviceId()).build();
-        //     addItemToUsersPlaybackQueueRequest.execute();
-        // }
     }
 
     public User getUserProfile(String userName) throws IOException, ParseException, SpotifyWebApiException {

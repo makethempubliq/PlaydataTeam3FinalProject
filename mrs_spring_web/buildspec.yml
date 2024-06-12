@@ -27,9 +27,10 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -f mrs_spring_web/Dockerfile -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $REPOSITORY_URI
+      - echo Building the Docker image with docker-compose...
+      - docker-compose -f mrs_spring_web/docker-compose.yml build
+      - echo Tagging the Docker image...
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:

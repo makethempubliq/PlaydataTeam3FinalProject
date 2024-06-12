@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build: .
-    image: rhythmiq-spring-boot:latest
+    image: rhythmiq-spting-boot:latest
     ports:
       - "8080:8080"
     networks:

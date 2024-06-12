@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: mrs_spring_web/Dockerfile
+    build: .
     ports:
       - "8080:8080"
     networks:

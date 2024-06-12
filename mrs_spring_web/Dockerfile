@@ -4,15 +4,15 @@ ENV APP_HOME=/apps
 
 WORKDIR $APP_HOME
 
-COPY mrs_spring_web/build.gradle mrs_spring_web/settings.gradle mrs_spring_web/gradlew $APP_HOME
+COPY ./build.gradle ./settings.gradle ./gradlew $APP_HOME
 
-COPY mrs_spring_web/gradle $APP_HOME/gradle
+COPY ./gradle $APP_HOME/gradle
 
 RUN chmod +x gradlew
 
 RUN ./gradlew build || return 0
 
-COPY mrs_spring_web/src $APP_HOME/src
+COPY ./src $APP_HOME/src
 
 RUN ./gradlew clean build
 

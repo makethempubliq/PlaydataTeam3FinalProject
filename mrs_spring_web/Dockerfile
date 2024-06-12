@@ -4,17 +4,17 @@ ENV APP_HOME=/apps
 
 WORKDIR $APP_HOME
 
-COPY ./mrs_spring_web/build.gradle ./mrs_spring_web/settings.gradle ./mrs_spring_web/gradlew $APP_HOME
+COPY mrs_spring_web/build.gradle mrs_spring_web/settings.gradle mrs_spring_web/gradlew $APP_HOME
 
-COPY ./mrs_spring_web/gradle $APP_HOME/gradle
+COPY mrs_spring_web/gradle $APP_HOME/gradle
 
 RUN chmod +x gradlew
 
-RUN ./mrs_spring_web/gradlew build || return 0
+RUN mrs_spring_web/gradlew build || return 0
 
-COPY ./mrs_spring_web/src $APP_HOME/src
+COPY mrs_spring_web/src $APP_HOME/src
 
-RUN ./mrs_spring_web/gradlew clean build
+RUN mrs_spring_web/gradlew clean build
 
 FROM openjdk:17.0.2-jdk
 

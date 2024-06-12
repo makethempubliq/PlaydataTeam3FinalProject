@@ -15,8 +15,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./certs:/etc/nginx/ssl
+      - ./mrs_spring_web/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./mrs_spring_web/certs:/etc/nginx/ssl
     depends_on:
       - app
     networks:

@@ -23,14 +23,13 @@ phases:
       - echo -n ${ECR_PASSWORD} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 
-
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image with docker-compose...
-      - docker-compose -f mrs_spring_web/docker-compose.yml build
+      - docker-compose -f mrs_spring_web/docker-compose.yml build $IMAGE_REPO_NAME:$IMAGE_TAG .
       - echo Tagging the Docker image...
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $REPOSITORY_URI
 
   post_build:
     commands:

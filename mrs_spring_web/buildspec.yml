@@ -3,8 +3,8 @@ env:
   git-credential-helper: yes
   variables:
     # docker 파라미터 정의
-    ECS_CONTAINER_NAME: Rhythmiq-springboot-cluster
-    IMAGE_REPO_NAME: rhythmiq-spting-boot # aws ecr에 등록이 되어 있는 name
+    ECS_CONTAINER_NAME: rhythmiq-cluster
+    IMAGE_REPO_NAME: rhythmiq-spring-boot # aws ecr에 등록이 되어 있는 name
     IMAGE_TAG: latest
     AWS_ACCOUNT_ID: 363116984473
     AWS_DEFAULT_REGION: ap-northeast-2
@@ -23,14 +23,13 @@ phases:
       - echo -n ${ECR_PASSWORD} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 
+
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image with docker-compose...
-      - docker-compose -f mrs_spring_web/docker-compose.yml build
-      - echo Tagging the Docker image...
+      - echo Building the Docker image...
+      - docker build -f mrs_spring_web/Dockerfile -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $REPOSITORY_URI
-
 
   post_build:
     commands:

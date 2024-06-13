@@ -80,5 +80,9 @@ def get_recommended_tracks():
     }
     return jsonify(response), 200
 
+@app.route('/', methods=['GET'])
+def test():
+    return "testsuccess"
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -7,7 +7,7 @@ function presettheme(tags) {
     };
 
     // Send the second POST request to get recommended tracks
-    fetch("http://43.201.106.236:5000/api/v1/flask/gettracks", {
+    fetch("//43.201.106.236:5000/api/v1/flask/gettracks", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -32,7 +32,7 @@ public class SpotifyService {
     @Autowired
     public UserRepository userRepository;
 
-    private static final URI redirectUri = SpotifyHttpManager.makeUri("http://localhost:8080/login/oauth2/code/spotify");
+    private static final URI redirectUri = SpotifyHttpManager.makeUri("http://anonyq.site:8080/login/oauth2/code/spotify");
     private static final String CLIENT_ID = "25d521b807f44fc19a8b202da4c88248";
     private static final String CLIENT_SECRET = "d06c3e35075f4c7cb28347e6620067cf";
 

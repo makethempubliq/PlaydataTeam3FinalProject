@@ -54,9 +54,8 @@ def theme_select():
     input_text = payload.get('inputText')
     total_duration = int(payload.get('totalDuration'))
     logging.info("tokenizing..........")
-    # Placeholder for tokenization process
-    tokenized_theme = extract_keywords(model, predefined_embeddings, input_text)  # This should be replaced with the actual tokenization logic
-    track_counts = total_duration//3  # Determine number of tracks based on duration
+    tokenized_theme = extract_keywords(model, predefined_embeddings, input_text)
+    track_counts = total_duration//3 
     
     response = {
         "tokenizedTheme": tokenized_theme,
@@ -71,18 +70,14 @@ def get_recommended_tracks():
     tokenized_theme = payload.get('tokenizedTheme')                                         
     track_counts = payload.get('trackCounts')
     en_tokenized_theme = kor_to_en(tokenized_theme)
-
     logging.info("recommending..........")
-
-    # Placeholder for track recommendation logic
-    track_uris = main_recommend_with_knn(tokenized_theme, track_counts)  # Add more URIs as needed
+    track_uris = main_recommend_with_knn(tokenized_theme, track_counts)
     track_uris = ["spotify:track:"+i for i in track_uris]
     response = {
         "tokenizedTheme": tokenized_theme,
         "trackUris": track_uris,
         "entokenizedTheme": en_tokenized_theme
     }
-
     return jsonify(response), 200
 
 if __name__ == '__main__':

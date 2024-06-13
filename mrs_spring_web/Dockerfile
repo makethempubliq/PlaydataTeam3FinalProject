@@ -10,11 +10,11 @@ COPY mrs_spring_web/gradle $APP_HOME/gradle
 
 RUN chmod +x gradlew
 
-RUN mrs_spring_web/gradlew build || return 0
+RUN ./gradlew build || return 0
 
 COPY mrs_spring_web/src $APP_HOME/src
 
-RUN mrs_spring_web/gradlew clean build
+RUN ./gradlew clean build
 
 FROM openjdk:17.0.2-jdk
 

@@ -8,6 +8,7 @@ WORKDIR /app
 # 패키지 설치
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
-
+    
+EXPOSE 5000
 
 CMD ["python", "main.py", "--host=0.0.0.0"]

@@ -53,7 +53,7 @@ spring:
                 client-id: 25d521b807f44fc19a8b202da4c88248
                 client-secret: d06c3e35075f4c7cb28347e6620067cf
                 client-authentication-method : client_secret_basic
-                redirect-uri : http://anonyq.site:8080/login/oauth2/code/spotify
+                redirect-uri : https://anonyq.site/login/oauth2/code/spotify
                 authorization-grant-type : authorization_code
                 scope:
                 - user-read-private

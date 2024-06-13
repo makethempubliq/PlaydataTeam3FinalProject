@@ -49,13 +49,13 @@ $(document).ready(function () {
 $(document).ready(function () {
     function updateMenu() {
         if ($(window).width() <= 992) {
-            $('#navbarDropdown').hide();
-            $('.dropdown-menu').hide();
+            $('#navbarDropdown').css('pointer-events', 'auto');
             $('.list-unstyled').show();
+            $('.dropdown-menu').hide();
         } else {
-            $('#navbarDropdown').show();
-            $('.dropdown-menu').show();
+            $('#navbarDropdown').css('pointer-events', 'none');
             $('.list-unstyled').hide();
+            $('.dropdown-menu').show();
         }
     }
 

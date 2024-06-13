@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             totalDuration: totalduration
         };
 
-        fetch("http://3.35.141.154:5000/api/v1/flask/themeselect", {
+        fetch("http://43.201.106.236:5000/api/v1/flask/themeselect", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
 
                 // Send the second POST request to get recommended tracks
-                return fetch("http://3.35.141.154:5000/api/v1/flask/gettracks", {
+                return fetch("http://43.201.106.236:5000/api/v1/flask/gettracks", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

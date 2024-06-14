@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             totalDuration: totalduration
         };
 
-        fetch("http://model.anonyq.site/api/v1/flask/themeselect", {
+        fetch("//model.anonyq.site/api/v1/flask/themeselect", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
 
                 // Send the second POST request to get recommended tracks
-                return fetch("http://model.anonyq.site/api/v1/flask/gettracks", {
+                return fetch("//model.anonyq.site/api/v1/flask/gettracks", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

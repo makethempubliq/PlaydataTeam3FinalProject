@@ -31,6 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     tokenizedTheme: tokenizedTheme,
                     trackCounts: trackCounts
                 };
+                if (Array.isArray(tokenizedTheme) && tokenizedTheme.length === 0) {
+                    // Reload the browser
+                    alert("태그 추출에 실패했습니다. 다른 문장을 입력해주세요.")
+                    window.location.reload();
+                    return; // Exit the function
+                }
+                
 
                 // Send the second POST request to get recommended tracks
                 return fetch("//model.anonyq.site/api/v1/flask/gettracks", {

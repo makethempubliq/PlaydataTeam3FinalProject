@@ -21,7 +21,7 @@ function deletePlaylist(playlistid) {
                 throw new Error('Network response was not ok');
             }
             alert("삭제되었습니다.")
-            window.location.reload();
+            window.location.href = '/user/mylists';
         })
 
         .catch(error => {

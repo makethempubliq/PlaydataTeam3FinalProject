@@ -1,9 +1,5 @@
 package com.example.mrs_spring_web.Controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Base64;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

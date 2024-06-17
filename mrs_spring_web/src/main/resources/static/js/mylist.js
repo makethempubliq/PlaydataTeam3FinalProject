@@ -1,7 +1,10 @@
-function confirmDelete(playlistid) {
-    const result = confirm("정말 삭제하시겠습니까?");
-    if (result) {
-        deletePlaylist(playlistid);
+function confirmDelete(playlistId, event) {
+    // 이벤트 버블링을 막아 리스트 아이템 클릭 이벤트가 발생하지 않도록 합니다.
+    event.stopPropagation();
+
+    const confirmation = confirm("정말 이 플레이리스트를 삭제하시겠습니까?");
+    if (confirmation) {
+        deletePlaylist(playlistId);
     }
 }
 

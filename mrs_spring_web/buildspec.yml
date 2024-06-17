@@ -3,7 +3,7 @@ env:
   git-credential-helper: yes
   variables:
     # docker 파라미터 정의
-    ECS_CONTAINER_NAME: rhythmiq-cluster
+    ECS_CONTAINER_NAME: rhythmiq-springboot-container
     IMAGE_REPO_NAME: rhythmiq-spring-boot # aws ecr에 등록이 되어 있는 name
     IMAGE_TAG: latest
     AWS_ACCOUNT_ID: 363116984473

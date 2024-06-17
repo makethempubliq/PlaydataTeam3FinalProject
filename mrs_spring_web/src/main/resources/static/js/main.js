@@ -7,7 +7,7 @@ function presettheme(tags) {
     };
 
     // Send the second POST request to get recommended tracks
-    fetch("//model.anonyq.site/api/v1/flask/gettracks", {
+    fetch("https://model.anonyq.site/api/v1/flask/gettracks", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

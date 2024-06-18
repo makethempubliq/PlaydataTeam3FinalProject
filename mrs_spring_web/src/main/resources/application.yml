@@ -50,10 +50,10 @@ spring:
           client:
             registration :
               spotify:
-                client-id: 25d521b807f44fc19a8b202da4c88248
-                client-secret: d06c3e35075f4c7cb28347e6620067cf
+                client-id: 스포티파이 앱의 clientid를 입력해주세요.
+                client-secret: 스포티파이 앱의 clientsecret을 입력해주세요.
                 client-authentication-method : client_secret_basic
-                redirect-uri : 스포티파이 앱의 redirect_uri를 입력해주세요.
+                redirect-uri : 스포티파이 앱의 redirecturi를 입력해주세요.
                 authorization-grant-type : authorization_code
                 scope:
                 - user-read-private

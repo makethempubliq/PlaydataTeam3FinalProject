@@ -6,6 +6,7 @@ from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 from scipy.sparse import csr_matrix
 import logging, csv, yaml, boto3, io
+import pandas as pd
 
 app = Flask(__name__)   
 CORS(app)

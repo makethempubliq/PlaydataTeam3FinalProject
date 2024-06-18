@@ -61,8 +61,8 @@ def generate_tag_combinations(tags):
     return tag_combinations
 
 def main_recommend_with_knn():
-    train_filepath = r'C:\Users\Playdata\Downloads\rythmiq1\MelonRec-master\MelonRec-master\res\train.csv'
-    mapping_filepath = r'C:\Users\Playdata\Downloads\rythmiq1\MelonRec-master\MelonRec-master\res\melontospotify (1).csv'
+    train_filepath = r'.\data\train.csv'
+    mapping_filepath = r'.\data\melontospotify.csv'
     
     print("태그를 입력하세요 (공백으로 구분): ")
     input_tags = input().strip().split()
@@ -116,16 +116,14 @@ def main_recommend_with_knn():
 
     remaining_needed = num_songs - len(popular_spotify_ids)
     random_songs = random.sample(tagged_songs, remaining_needed)
-    random_spotify_ids = melon_to_spotify(random_songs, mapping_filepath)
     
     print(f"인기 곡 수: {len(popular_spotify_ids)}")
-    print(f"랜덤 곡 수: {len(random_spotify_ids)}")
 
     print("멜론 ID를 스포티파이 ID로 변환 완료.")
 
     # KNN을 사용하여 곡 추천
     print("KNN을 사용하여 곡 추천 중...")
-    feature_matrix, song_index = create_feature_matrix(train_data)
+    feature_matrix, song_index = create_feature_matrix(train_data) ###########
     target_song_indices = [song_index.get(song) for song in random_songs if song_index.get(song) is not None]
     print(f"타겟 곡 인덱스 수: {len(target_song_indices)}")
     
@@ -145,7 +143,7 @@ def main_recommend_with_knn():
     knn_spotify_ids = melon_to_spotify(knn_recommended_songs, mapping_filepath)
 
     # 최종 추천 리스트 생성
-    final_recommendations = popular_spotify_ids + random_spotify_ids[:remaining_needed]
+    final_recommendations = popular_spotify_ids + knn_spotify_ids
 
     # 추천곡 수가 부족할 경우 랜덤으로 채움
     if len(final_recommendations) < num_songs:
@@ -169,5 +167,4 @@ def main_recommend_with_knn():
 
     return final_recommendations
 
-if __name__ == "__main__":
-    knn_recommended_songs = main_recommend_with_knn()
+main_recommend_with_knn()

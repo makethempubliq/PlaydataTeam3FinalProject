@@ -31,9 +31,9 @@ public class SpotifyService {
     @Autowired
     public UserRepository userRepository;
 
-    private static final URI redirectUri = SpotifyHttpManager.makeUri("https://anonyq.site/login/oauth2/code/spotify");
-    private static final String CLIENT_ID = "25d521b807f44fc19a8b202da4c88248";
-    private static final String CLIENT_SECRET = "d06c3e35075f4c7cb28347e6620067cf";
+    private static final URI redirectUri = SpotifyHttpManager.makeUri("스포티파이 앱의 redirecturi를 입력해주세요.");
+    private static final String CLIENT_ID = "스포티파이 앱의 clientid를 입력해주세요.";
+    private static final String CLIENT_SECRET = "스포티파이 앱의 clientsecret를 입력해주세요.";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
                                                 .setClientId(CLIENT_ID)

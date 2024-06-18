@@ -53,7 +53,7 @@ spring:
                 client-id: 25d521b807f44fc19a8b202da4c88248
                 client-secret: d06c3e35075f4c7cb28347e6620067cf
                 client-authentication-method : client_secret_basic
-                redirect-uri : https://anonyq.site/login/oauth2/code/spotify
+                redirect-uri : 스포티파이 앱의 redirect_uri를 입력해주세요.
                 authorization-grant-type : authorization_code
                 scope:
                 - user-read-private
@@ -82,10 +82,10 @@ spring:
 cloud:
   aws:
     s3:
-      bucket: rhythmiq # {버킷명}
+      bucket: 플레이리스트 이미지를 저장할 AWS 버킷 명을 입력해주세요.
     credentials:
-      access-key: AKIAVJC3VPCMTGFZIB5I
-      secret-key: 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
+      access-key: AWS의 accesskey를 입력해주세요.
+      secret-key: AWS의 secretkey를 입력해주세요.
     region:
       static: ap-northeast-2
       auto: false

@@ -3,12 +3,12 @@ env:
   git-credential-helper: yes
   variables:
     # docker 파라미터 정의
-    ECS_CONTAINER_NAME: rhythmiq-modelserver-container
-    IMAGE_REPO_NAME: rhythmiq-model-server # aws ecr에 등록이 되어 있는 name
+    ECS_CONTAINER_NAME: ecs 컨테이너 이름을 입력해주세요.
+    IMAGE_REPO_NAME: ecr 이미지를 저장할 레파지토리 이름을 입력해주세요.
     IMAGE_TAG: latest
-    AWS_ACCOUNT_ID: 363116984473
+    AWS_ACCOUNT_ID: AWS 계정의 ID를 입력해주세요.
     AWS_DEFAULT_REGION: ap-northeast-2
-    PACKAGE_S3_BUCKET: rhythmiq
+    PACKAGE_S3_BUCKET: 
 
 phases:
   pre_build:

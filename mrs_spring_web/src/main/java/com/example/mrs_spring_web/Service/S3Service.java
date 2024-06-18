@@ -17,14 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class S3Service {
     private final AmazonS3 amazonS3Client;
-    private static final String S3_PREFIX = "https://rhythmiq.s3.ap-northeast-2.amazonaws.com/";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
     // MultipartFile을 전달받아 File로 전환한 후 S3에 업로드
     public String upload(MultipartFile multipartFile, String dirName) throws Exception { // dirName의 디렉토리가 S3 Bucket 내부에 생성됨
-        log.info("블롭이와서염");
         String fileName = "playlistimages/" + System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
         
         // 파일을 S3에 업로드할 때 ACL 설정을 제외합니다.

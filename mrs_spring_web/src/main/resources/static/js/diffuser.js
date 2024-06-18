@@ -4,7 +4,7 @@ async function getPlaylistArt(data) {
 			"https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
 			{
 				headers: {
-					Authorization: "Bearer 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",
+					Authorization: "Bearer 허깅 페이스에서 생성한 Accesstoken을 입력해주세요",
 					"Content-Type": "application/json"
 				},
 				method: "POST",

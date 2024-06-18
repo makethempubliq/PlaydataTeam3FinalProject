@@ -1,9 +1,10 @@
 
 from TagExtractor import extract_keywords, kor_to_en
-from SongRecommender import main_recommend_with_knn
+from SongRecommender import main_recommend_with_knn, parse_str_list
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from sentence_transformers import SentenceTransformer 
+from sentence_transformers import SentenceTransformer
+from scipy.sparse import csr_matrix
 import logging, csv, yaml, boto3, io
 
 app = Flask(__name__)   
@@ -25,6 +26,22 @@ bucket_name = config['bucket_name']
 
 predefined_embeddings = {}
 model = None
+def create_feature_matrix(data):
+    song_index = {}
+    row_indices = []
+    col_indices = []
+    data_values = []
+    idx = 0
+    for playlist in data:
+        playlist_id = playlist['id']
+        for song in parse_str_list(playlist['songs']):
+            if song not in song_index:
+                song_index[song] = idx
+                idx += 1
+            row_indices.append(playlist_id)
+            col_indices.append(song_index[song])
+            data_values.append(1)
+    return csr_matrix((data_values, (row_indices, col_indices)), shape=(max(row_indices) + 1, len(song_index))), song_index
 
 def load_model():
     global predefined_embeddings
@@ -47,6 +64,12 @@ def load_model():
 
 # 애플리케이션 시작 시 모델 불러오기
 load_model()
+try:
+    train = s3_client.get_object(Bucket=bucket_name, Key="data/train.csv")
+    train_data = pd.read_csv(io.BytesIO(train["Body"].read())).to_dict('records')
+except Exception as e:
+    print(f"Error: {e}")
+feature_matrix, song_index = create_feature_matrix(train_data)
 
 @app.route('/api/v1/flask/themeselect', methods=['POST'])
 def theme_select():
@@ -71,7 +94,7 @@ def get_recommended_tracks():
     track_counts = payload.get('trackCounts')
     en_tokenized_theme = kor_to_en(tokenized_theme)
     logging.info("recommending..........")
-    track_uris = main_recommend_with_knn(tokenized_theme, track_counts)
+    track_uris = main_recommend_with_knn(tokenized_theme, track_counts, feature_matrix, song_index, train_data)
     track_uris = ["spotify:track:"+i for i in track_uris]
     response = {
         "tokenizedTheme": tokenized_theme,

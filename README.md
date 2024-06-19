@@ -9,7 +9,7 @@
 
 ### 팀원 구성
 
-신원식 - 팀장, 백엔드, CI/CD [github](https://github.com/makethempubliq)  
+>신원식 - 팀장, 백엔드, CI/CD [github](https://github.com/makethempubliq)  
 권민기 - 프론트엔드, 자연어 처리, 데이터 전처리 및 분석 [github](https://github.com/SophieKwonn)  
 김재원 - 데이터 수집 및 분석, 추천 알고리즘 개발 [github](https://github.com/jaewon9325)
 
@@ -20,18 +20,19 @@
 <br/>
 
 ## 사용 모델
-### KR-SBERT-V40K-klueNLI-augSTS 입력 문장에서 테마 추출
+### KR-SBERT-V40K-klueNLI-augSTS - 입력 문장에서 테마 추출
 
-### Stable Diffusion-XL 1.0-base 플레이리스트 커버 이미지 생성
-https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방식으로 사용<br/>
-### K-Nearist-Neighbor 테마 기반 플레이리스트 생성
-프로젝트에서 KNN모델은 플레이리스트와 곡 간의 관계를 나타내는 희소 행렬을 생성한다.
+### Stable Diffusion-XL 1.0-base - 플레이리스트 커버 이미지 생성
+>https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방식으로 사용<br/>
+테마 목록을 입력 값으로 사용
+### K-Nearist-Neighbor - 테마 기반 플레이리스트 생성
+>프로젝트에서 KNN모델은 플레이리스트와 곡 간의 관계를 나타내는 희소 행렬을 생성한다.
 이 행렬은 플레이리스트와 곡의 포함 여부를 나타내며, KNN 모델의 입력으로 사용된다.
-코사인 유사도를 사용하여 각 곡 간의 유사성을 측정하고, 가장 유사한 곡들을 찾아낸다.
-추천 알고리즘 설명
-1. 추천해야하는 트랙 수의 50%는 입력 테마가 속한 플레이리스트 중에서 소속 빈도 수가 높은 순으로 추출
-2. 나머지 50%는 입력 테마가 속한 플레이리스트의 모든 트랙에서 랜덤하게 선정
-3. 랜덤하게 선정한 트랙들을 KNN모델을 사용하여 각 트랙들과 유사한 곡 추출 (최종 결과에 무작위성 부여)
+코사인 유사도를 사용하여 각 곡 간의 유사성을 측정하고, 가장 유사한 곡들을 찾아낸다.<br/><br/>
+**추천 알고리즘 설명**
+>1. 추천해야하는 트랙 수의 50%는 입력 테마가 속한 플레이리스트 중에서 소속 빈도 수가 높은 순으로 추출
+>2. 나머지 50%는 입력 테마가 속한 플레이리스트의 모든 트랙에서 랜덤하게 선정
+>3. 랜덤하게 선정한 트랙들에 KNN모델을 사용하여 각 트랙들과 유사한 곡 추출 (최종 결과에 무작위성 부여)
 <br/>
 
 ## 시스템 구성도
@@ -52,7 +53,7 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 ### Base
 1. 앱 생성 및 Client id 및 Client Secret 발급 - https://developer.spotify.com/dashboard
 2. Redirect URI 등록 - http://localhost:8080/login/oauth2/authorization/spotify
-3. AWS S3 Bucket 생성
+3. AWS S3 Bucket 생성 및 데이터 파일 업로드 (경로 : 버킷명/data/) - https://drive.google.com/file/d/1DJn5bCax02uh1avpYloX3rsYaIAjUIlD/view?usp=drive_link, https://drive.google.com/file/d/1fVD-cOsX4X0kJN8t96yRLZhxPfIL59s0/view?usp=drive_link
 4. Hugging Face Accesstoken 발급
 ### Spring main server
 1. SpotifyService.java, application.yml, diffuser.js 환경에 맞게 수정

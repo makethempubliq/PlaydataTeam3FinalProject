@@ -87,7 +87,7 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 1. 앱 생성 및 Client id 및 Client Secret 발급 - https://developer.spotify.com/dashboard
 2. Redirect URI 등록 - http://localhost:8080/login/oauth2/authorization/spotify
 3. AWS S3 Bucket 생성 및 데이터 파일 업로드 (경로 : 버킷명/data/) - https://drive.google.com/file/d/1DJn5bCax02uh1avpYloX3rsYaIAjUIlD/view?usp=drive_link, https://drive.google.com/file/d/1fVD-cOsX4X0kJN8t96yRLZhxPfIL59s0/view?usp=drive_link
-4. Hugging Face Accesstoken 발급
+4. Hugging Face API Accesstoken 발급
 ### Spring main server
 1. SpotifyService.java, application.yml, diffuser.js 환경에 맞게 수정
 2. MrsSpringWebApplication.java 실행

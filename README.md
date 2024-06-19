@@ -10,23 +10,25 @@
 
 ### 팀원 구성
 
->신원식 - 팀장, 백엔드, CI/CD [github](https://github.com/makethempubliq)  
-권민기 - 프론트엔드, 자연어 처리, 데이터 전처리 및 분석 [github](https://github.com/SophieKwonn)  
-김재원 - 데이터 수집 및 분석, 추천 알고리즘 개발 [github](https://github.com/jaewon9325)
+>- 신원식 - 팀장, 백엔드, CI/CD [github](https://github.com/makethempubliq)  
+>- 권민기 - 프론트엔드, 자연어 처리, 데이터 전처리 및 분석 [github](https://github.com/SophieKwonn)  
+>- 김재원 - 데이터 수집 및 분석, 추천 알고리즘 개발 [github](https://github.com/jaewon9325)
 
 <br/>
 
 ### 기술 스택
-- Language : JAVA, Python
-- Front-End : HTML, JavaScript, CSS
-- Back-End : Spring Boot, FLASK
-- CI/CD : AWS ECR, ECS, S3, Route 53, Certificate Manager, Code Pipeline
-- Collaborate Tools : Github, Slack
+>- Language : JAVA, Python
+>- Front-End : HTML, JavaScript, CSS
+>- Back-End : Spring Boot, FLASK
+>- CI/CD : AWS ECR, ECS, S3, Route 53, Certificate Manager, Code Pipeline
+>- Collaborate Tools : Github, Slack
 
 <br/>
 
 ### 개발 기간
-- **2024-04-08 ~ 2024-06-24**
+>- **2024-04-08 ~ 2024-06-24**
+
+<br/>
 
 ## 기획
 
@@ -47,12 +49,13 @@
 <br/>
 
 ## 데이터 전처리
+전처리...
 
 <br/>
 
 ## 사용 모델
 ### KR-SBERT-V40K-klueNLI-augSTS - 입력 문장에서 테마 추출
->
+모델 정리 부탁이요..
 ### Stable Diffusion-XL 1.0-base - 플레이리스트 커버 이미지 생성
 https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방식으로 사용<br/>
 테마 목록을 입력 값으로 사용

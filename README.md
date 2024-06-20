@@ -26,7 +26,7 @@
 <br/>
 
 ### 개발 기간
->- **2024-04-08 ~ 2024-06-24**
+>- **2024-05-02 ~ 2024-06-24**
 
 <br/>
 
@@ -45,7 +45,7 @@ B2B의 관점에서는, 음악 큐레이션 업체들이 이 서비스를 활용
 <br/>
 
 ## 사용 데이터
-카카오 아레나 3회 대회 Train 데이터 사용 - https://github.com/kakao/recoteam/discussions/9
+3회 카카오 아레나 대회 데이터 사용 - https://github.com/kakao/recoteam/discussions/9
 
 <br/>
 

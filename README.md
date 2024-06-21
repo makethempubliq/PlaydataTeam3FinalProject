@@ -116,6 +116,8 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 ### 생성된 플레이리스트 및 커버 이미지, 플레이리스트 재생
 ![](./img/노래%20재생.png)
 <br/>
+### 생성된 플레이리스트 저장
+![.](./img/플레이리스트%20저장.png)
 
 ## 배포
 

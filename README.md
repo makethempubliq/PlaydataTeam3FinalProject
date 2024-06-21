@@ -78,6 +78,30 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 
 <br/>
 
+## ERD
+![ERD](./img/ERD.png)
+
+**user 테이블** - 사용자 계정 데이터
+- username - PK, Spotify에 등록된 User의 고유 ID
+- access_token - Oauth2.0로그인시 발급되는 accesstoken값
+- email - User의 Spotify E-mail
+- password - Oauth2.0 로그인용 암호화값
+- provider, provider_id - Spotify
+- role - User의 권한
+- device_id - 추천된 플레이리스트를 재생시킬 뮤직 플레이어의 ID
+
+**playlist 테이블** - 사용자가 저장한 플레이리스트의 데이터
+- playlist_id - PK, 저장된 플레이리스트의 고유 ID
+- playlist_cover_src - S3에 저장된 Stable Diffusion이 생성한 이미지의 경로
+- playlist_duration - 플레이리스트의 총 재생시간
+- playlist_en_themes - 플레이리스트의 영문 테마
+- playlist_themes - 플레이리스트의 테마
+- playlist_tracks - 플레이리스트 수록곡들의 Spotify Track ID
+- playlist_tracks_count - 플레이리스트의 수록곡 수
+- playlist_user_id - 해당 플레이리스트를 저장한 User의 ID
+
+<br/>
+
 ## 시스템 구성도
 
 ![시스템 구성도](./img/시스템%20구성도.png)
@@ -124,6 +148,7 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 ![](./img/플레이리스트%20저장.png)
 - 사용자가 저장한 플레이리스트의 목록을 확인하고 클릭시 해당 플레이리스트로 플레이리스트 확인 페이지로 이동한다.
 - 삭제 버튼을 클릭하면 해당 플레이리스트를 DB에서 삭제한다.
+<br/>
 
 ## 배포
 

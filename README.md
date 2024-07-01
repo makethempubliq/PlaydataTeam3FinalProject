@@ -144,7 +144,7 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 - 저장 버튼을 클릭하면 플레이리스트의 데이터가 DB에 저장된다.
 - 다운로드 버튼을 클릭하면 해당 플레이리스트가 스포티파이에 저장된다.
 ![](./img/노래%20재생.png)
-### 플레이리스트 저장 페이지
+### 플레이리스트 목록 페이지
 ![](./img/플레이리스트%20저장.png)
 - 사용자가 저장한 플레이리스트의 목록을 확인하고 클릭시 해당 플레이리스트로 플레이리스트 확인 페이지로 이동한다.
 - 삭제 버튼을 클릭하면 해당 플레이리스트를 DB에서 삭제한다.
@@ -159,10 +159,6 @@ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0 API 호출 방�
 4. AWS Route 53으로 각각의 Load Balencer DNS주소에 구입한 도메인 주소 할당
 5. AWS Certificate Manager로 도메인 주소에 SSL 인증
 
-접속 주소 (임시) - https://anonyq.site
 
 >※ 배포시 Spring Boot, Flask의 buildspec.yml을 환경에 맞게 수정해주세요.
-
-## 참조문헌
-
 
